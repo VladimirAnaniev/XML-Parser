@@ -80,6 +80,48 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/File/File.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/File/File.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/FileManager.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/FileManager.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/String/String.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/String/String.h">
+			<Option target="XML_Parser"/>
+		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/main.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
