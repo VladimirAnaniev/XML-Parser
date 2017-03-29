@@ -2,9 +2,10 @@
 #define XML_PARSER_NODE_H
 
 #include "Argument/Argument.h"
+#include "../String/String.h"
 
 class Node {
-    char* tag;
+    String tag;
     Node** children;
     Node* parent;
     Argument* args;

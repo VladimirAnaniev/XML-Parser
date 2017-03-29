@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-bool FileManager::openFile(char *path) {
+bool FileManager::openFile(String path) {
     if(this->isOpen) {
         //TODO: ERR
     } else {

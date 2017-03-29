@@ -2,8 +2,11 @@
 #define XML_PARSER_ARGUMENT_H
 
 
-class Argument {
+#include "../../String/String.h"
 
+class Argument {
+    String key;
+    String value;
 };
 
 

@@ -10,7 +10,7 @@ class FileManager {
 
 public:
     /* Methods */
-    bool openFile(char *path);
+    bool openFile(String path);
 
     bool closeFile();
 

@@ -2,32 +2,38 @@
 #define XML_PARSER_FILE_H
 
 
+#include "../../String/String.h"
+
 class File {
-    char *path;
-    char *data;
+    String path;
+    String data;
 
 public:
     /* Constructors */
-    //Default constructor & Constructor with parameters
-    File(const char* path = "", const char* data = "");
+    //Default constructor
+    File();
 
-    File(const File& file);
+    //Constructor with ith parameters
+    File(String path, String data);
+
+    //Copy constructor
+    File(const File &file);
 
     //Destructor
     ~File();
 
     /* Methods */
     //Change the path of this file.
-    void setPath(const char *path);
+    void setPath(String path);
 
     //Change the data in the file
-    void setData(const char *data);
+    void setData(String data);
 
     //Get the file's path
-    const char *getPath() const;
+    String getPath() const;
 
     //get the file's data
-    const char *getData() const;
+    String getData() const;
 };
 
 
