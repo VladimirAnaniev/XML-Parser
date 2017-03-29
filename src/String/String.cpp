@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 #include "String.h"
 
 String::String(const char *str) : str(nullptr) {
@@ -68,3 +69,13 @@ std::ostream &operator<<(std::ostream &out, String str) {
 void String::concat(String str) {
     this->concat(str.get());
 }
+
+//std::ifstream &operator>>(std::ifstream &in, String str) {
+//    while(in) {
+//        char line[10000];
+//        std::getline(in, str);
+//        str.concat(line);
+//        std::fread(line, 100000, 1, in)
+//    }
+//    return in;
+//}

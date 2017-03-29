@@ -9,7 +9,7 @@ class FileManager {
     File file;
 
 public:
-    /* Methods */
+    /** Methods **/
     bool openFile(String path);
 
     bool closeFile();

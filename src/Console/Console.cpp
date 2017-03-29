@@ -18,6 +18,10 @@ short Console::readLine() {
     std::cin.getline(input, 128);
 
     //TODO: LOGIC
+    if(strcmp(input, "open") == 0) {
+        this->fm.openFile("/home/vladimir/Programming/XML-Parser");
+        return OK;
+    }
 
     if (strcmp(input, "boza") == 0) return END;
 

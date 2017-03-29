@@ -1,7 +1,7 @@
 #ifndef XML_PARSER_STRING_H
 #define XML_PARSER_STRING_H
 
-#include <iostream>
+#include <fstream>
 
 class String {
     char *str;
@@ -11,7 +11,7 @@ class String {
     void resize(int newCells);
 
 public:
-    /* Constructors */
+    /** Constructors **/
     //Default constructor
     String(const char *str = "\0");
 
@@ -21,7 +21,7 @@ public:
     //Desctuctor
     ~String();
 
-    /* Methods */
+    /** Methods **/
     //concatenates a string after the current value
     void concat(const char *str);
 
@@ -32,7 +32,7 @@ public:
 
     void set(const char *str);
 
-    /* Operators */
+    /** Operators **/
     //Concats two strings together and produces new String
     String operator+(const String &str) const;
 
@@ -42,10 +42,13 @@ public:
     //Assignment
     String &operator=(const String &str);
 
+    ////Parse to char* FROM STACKOVERFLOW
+    operator const char *() const { return this->str; }
+
 };
 
 ////Input
-//std::istream &operator>>(std::istream &in, String str);
+//std::ifstream &operator>>(std::ifstream &in, String str);
 
 //Output
 std::ostream &operator<<(std::ostream &out, String str);

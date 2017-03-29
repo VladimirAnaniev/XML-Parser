@@ -9,10 +9,11 @@ class Console {
     //reads from console, returns executeCommand(parseCommand(input));
     short readLine();
 
+    //Informs the user they entered an invalid command
     void invalidCommand();
 
 public:
-    /* Methods */
+    /** Methods **/
     //Listen for commands
     void listen();
 };
