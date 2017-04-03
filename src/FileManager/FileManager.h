@@ -9,14 +9,18 @@ class FileManager {
     File file;
 
 public:
+    /** Constructors **/
+    FileManager();
+
     /** Methods **/
-    bool openFile(String path);
+    //Open a file and read its data
+    bool open(String path);
 
-    bool closeFile();
-
+    //Save the file at its current path
     bool save();
 
-    bool saveAs(char *path);
+    //Save the file at a new path
+    bool saveAs(String path);
 };
 
 

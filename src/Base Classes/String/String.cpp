@@ -9,11 +9,11 @@ String::String(const char *str) : str(nullptr) {
 }
 
 String::String(const String &string) : str(nullptr), length(string.length) {
-    this->set(string.get());
+    this->set(string);
 }
 
 void String::set(const char *str) {
-    delete[] this->str;
+    if (this->str != nullptr) delete[] this->str;
     this->length = (int) strlen(str);
     this->str = new char[this->length + 1];
     strcpy(this->str, str);
@@ -66,16 +66,18 @@ std::ostream &operator<<(std::ostream &out, String str) {
     return out;
 }
 
-void String::concat(String str) {
-    this->concat(str.get());
+std::ifstream &operator>>(std::ifstream &in, String str) {
+//    char line[10000];
+//    in.getline(line, 10000);
+//    str.set(line);
+    //TODO: HOW DO I READ FROM THE FILE CORRECTLY?
+    return in;
 }
 
-//std::ifstream &operator>>(std::ifstream &in, String str) {
-//    while(in) {
-//        char line[10000];
-//        std::getline(in, str);
-//        str.concat(line);
-//        std::fread(line, 100000, 1, in)
-//    }
-//    return in;
-//}
+const char String::operator[](int index) const {
+    if (index >= 0 && index < this->length) {
+        return this->str[index];
+    }
+    std::cerr<<"You cannot access this index!!"<<std::endl;
+    return '\0';
+}

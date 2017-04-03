@@ -19,7 +19,7 @@ short Console::readLine() {
 
     //TODO: LOGIC
     if(strcmp(input, "open") == 0) {
-        this->fm.openFile("/home/vladimir/Programming/XML-Parser");
+        this->fm.open("testfile.txt");
         return OK;
     }
 

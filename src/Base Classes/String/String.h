@@ -10,10 +10,11 @@ class String {
     //Make the string double the size
     void resize(int newCells);
 
+
 public:
     /** Constructors **/
     //Default constructor
-    String(const char *str = "\0");
+    String(const char *str = "");
 
     //Copy constructor
     String(const String &string);
@@ -25,11 +26,10 @@ public:
     //concatenates a string after the current value
     void concat(const char *str);
 
-    void concat(String str);
-
-    //returns the string
+    //Returns the string as a char*
     const char *get() const;
 
+    //Override the current string
     void set(const char *str);
 
     /** Operators **/
@@ -45,10 +45,13 @@ public:
     ////Parse to char* FROM STACKOVERFLOW
     operator const char *() const { return this->str; }
 
+    //Get char at index
+    const char operator[](int index) const;
+
 };
 
-////Input
-//std::ifstream &operator>>(std::ifstream &in, String str);
+//Input
+std::ifstream &operator>>(std::ifstream &in, String str);
 
 //Output
 std::ostream &operator<<(std::ostream &out, String str);

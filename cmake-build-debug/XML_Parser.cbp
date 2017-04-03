@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Array/Array.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Array/Array.h">
+			<Option target="XML_Parser"/>
+		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
