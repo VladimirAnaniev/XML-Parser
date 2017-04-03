@@ -10,7 +10,6 @@ class String {
     //Make the string double the size
     void resize(int newCells);
 
-
 public:
     /** Constructors **/
     //Default constructor
@@ -41,6 +40,9 @@ public:
 
     //Assignment
     String &operator=(const String &str);
+
+    //Compare strings
+    bool operator==(const String &str) const;
 
     ////Parse to char* FROM STACKOVERFLOW
     operator const char *() const { return this->str; }

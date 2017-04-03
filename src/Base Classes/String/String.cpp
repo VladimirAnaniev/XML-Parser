@@ -38,7 +38,6 @@ void String::concat(const char *str) {
 }
 
 String &String::operator=(const String &str) {
-    if (this->str != nullptr) delete[] this->str;
     this->length = str.length;
     this->set(str.get());
 
@@ -78,6 +77,10 @@ const char String::operator[](int index) const {
     if (index >= 0 && index < this->length) {
         return this->str[index];
     }
-    std::cerr<<"You cannot access this index!!"<<std::endl;
+    std::cerr << "You cannot access this index!!" << std::endl;
     return '\0';
+}
+
+bool String::operator==(const String &str) const {
+    return strcmp(this->str, str.str) == 0;
 }

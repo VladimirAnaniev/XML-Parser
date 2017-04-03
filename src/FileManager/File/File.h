@@ -1,8 +1,8 @@
 #ifndef XML_PARSER_FILE_H
 #define XML_PARSER_FILE_H
 
-#include "../../String/String.h"
 #include "../../Node/Node.h"
+#include "../../Base Classes/String/String.h"
 
 class File {
     String path;
