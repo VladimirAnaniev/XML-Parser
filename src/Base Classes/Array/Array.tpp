@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Array.h"
+#include <stdexcept>
+
 
 template<typename T>
-Array<T>::Array(int size): length(size) {
+Array<T>::Array(int size): capacity(size), size(0) {
     this->arr = new T[size];
 }
 
@@ -12,9 +14,9 @@ Array<T>::~Array() {
 }
 
 template<typename T>
-Array<T>::Array(const Array &arr) : length(arr.length) {
-    this->arr = new T[arr.length];
-    this->copy(arr.arr, arr.length);
+Array<T>::Array(const Array &arr) :  capacity(arr.capacity), size(arr.size) {
+    this->arr = new T[arr.capacity];
+    this->copy(arr.arr, arr.size);
 }
 
 template<typename T>
@@ -28,32 +30,96 @@ template<typename T>
 void Array<T>::resize(int newSize) {
     T *old = this->arr;
     this->arr = new T[newSize];
-    this->copy(old, this->length);
-    this->length = newSize;
-}
-
-template<typename T>
-void Array<T>::expand(int n) {
-    this->resize(this->length + n);
+    this->copy(old, this->size);
+    this->capacity = newSize;
 }
 
 template<typename T>
 Array<T> &Array<T>::operator=(const Array &arr) {
-    this->length = arr.length;
-    this->arr = new T[this->length];
-    this->copy(arr.arr, arr.length);
+    this->capacity = arr.capacity;
+    this->size = arr.size;
+    this->arr = new T[arr.capacity];
+    this->copy(arr.arr, arr.size);
 
     return *this;
 }
 
 template<typename T>
 T &Array<T>::operator[](int index) {
-    if (index < 0) {
-        std::cerr << "Can't access index < 0" << std::endl;
-        return this->arr[0]; //is this logical?
-    } else if (index >= this->length) {
-        this->resize(index + 1);
+    return this->get(index);
+}
+
+template<typename T>
+int Array<T>::getSize() const {
+    return this->size;
+}
+
+template<typename T>
+int Array<T>::getCapacity() const {
+    return this->capacity;
+}
+
+template<typename T>
+void Array<T>::insert(int index, T elem) {
+    if (this->size == this->capacity) {
+        this->resize(this->capacity * 2); //double the size if array is full
+    }
+
+    for (int i = this->size - 1; i >= index; i--) {
+        this->arr[i + 1] = this->arr[i]; //shift all elements after [index] to the right
+    }
+
+    this->arr[index] = elem;
+    this->size++;
+}
+
+template<typename T>
+void Array<T>::push(T elem) {
+    this->insert(this->size, elem);
+}
+
+template<typename T>
+void Array<T>::prepend(T elem) {
+    this->insert(0, elem);
+}
+
+template<typename T>
+T &Array<T>::get(int index) const {
+    if (index < 0 || index >= capacity) {
+        std::cerr<<"ERROR"<<std::endl;
+        //TODO: Throw error
     }
 
     return this->arr[index];
 }
+
+template<typename T>
+bool Array<T>::isEmpty() const {
+    return this->size == 0;
+}
+
+template<typename T>
+T Array<T>::deleteAt(int index) {
+    if (index < 0 || index >= capacity) {
+        //TODO: Error
+    }
+
+    T toReturn = this->arr[index];
+    this->size--;
+
+    for (int i = index; i < this->size; i++) {
+        this->arr[i] = this->arr[i + 1]; //Shift all elements after [index] to the left
+    }
+
+    if (this->size < this->capacity / 4) {
+        this->resize(this->capacity / 4);
+    }
+
+    return toReturn;
+}
+
+template<typename T>
+T Array<T>::pop() {
+    return this->deleteAt(this->size - 1);
+}
+

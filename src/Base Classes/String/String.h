@@ -2,6 +2,7 @@
 #define XML_PARSER_STRING_H
 
 #include <fstream>
+#include "../Array/Array.h"
 
 class String {
     char *str;
@@ -30,6 +31,10 @@ public:
 
     //Override the current string
     void set(const char *str);
+
+    Array<String> split(char c = ' ') const;
+
+    String substring(int start, int end) const;
 
     /** Operators **/
     //Concats two strings together and produces new String

@@ -84,3 +84,26 @@ const char String::operator[](int index) const {
 bool String::operator==(const String &str) const {
     return strcmp(this->str, str.str) == 0;
 }
+
+Array<String> String::split(char c) const {
+    Array<String> arr;
+    int lastIndex = 0;
+
+    for (int i = 0; i < this->length; i++) {
+        if(this->str[i] == c) {
+            String newstr = this->substring(lastIndex, i);
+            if(newstr.length) arr.push(newstr);
+            lastIndex = i + 1;
+        }
+    }
+    arr.push(substring(lastIndex, this->length+1));
+
+    return arr;
+}
+
+String String::substring(int start, int end) const {
+    char* newStr = new char[end-start+1];
+    strncpy(newStr, this->str+start, (size_t) end-start);
+    newStr[end-start] = '\0';
+    return newStr;
+}
