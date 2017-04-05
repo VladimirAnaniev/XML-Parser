@@ -14,7 +14,10 @@ public:
 
     /** Methods **/
     //Open a file and read its data
-    bool open(String path);
+    void open(String path);
+
+    //Close the file without saving
+    void close();
 
     //Save the file at its current path
     bool save();

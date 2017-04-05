@@ -7,10 +7,38 @@
 
 class Node {
     String tag;
-    Array<Node*> children;
-    Node* parent;
-    Argument* args;
+    Array<Node> children;
+    Node *parent;
+    Array<Argument> args;
 
+public:
+    /** Constructors **/
+    //TODO
+
+    /** Methods **/
+
+    void addChild(Node child);
+
+    Node removeChild(int index);
+
+    void changeParent(Node *parent);
+
+    void addArgument(Argument arg);
+
+    Argument removeArgument(int index);
+
+    void setTag(String tag);
+
+    String getTag() const;
+
+    Array<Node> &getChildren() const;
+
+    Array<Node> &getArguments() const;
+
+    const Node *getParent() const;
+
+    ////Destructor
+    //TODO
 };
 
 

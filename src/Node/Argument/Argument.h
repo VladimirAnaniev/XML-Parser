@@ -6,6 +6,16 @@
 class Argument {
     String key;
     String value;
+
+public:
+    /** Methods **/
+    String getKey() const;
+
+    String getValue() const;
+
+    void setKey() const;
+
+    void setValue() const;
 };
 
 

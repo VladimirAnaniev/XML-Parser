@@ -19,7 +19,7 @@ String File::getPath() const {
 bool File::parse(String path) {
     this->setPath(path);
 
-
+    return true;
 
     //TODO: Open file, read input and parse to node tree.
 }
