@@ -74,11 +74,11 @@ std::ifstream &operator>>(std::ifstream &in, String str) {
 }
 
 const char String::operator[](int index) const {
-    if (index >= 0 && index < this->length) {
-        return this->str[index];
+    if (index < 0 || index >= this->length) {
+        throw std::invalid_argument("Trying to call string[index] with an invalid index.");
     }
-    std::cerr << "You cannot access this index!!" << std::endl;
-    return '\0';
+
+    return this->str[index];
 }
 
 bool String::operator==(const String &str) const {

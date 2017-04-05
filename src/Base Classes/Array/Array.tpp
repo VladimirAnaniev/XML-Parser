@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Array.h"
-#include <stdexcept>
 
 
 template<typename T>
@@ -86,8 +85,7 @@ void Array<T>::prepend(T elem) {
 template<typename T>
 T &Array<T>::get(int index) const {
     if (index < 0 || index >= capacity) {
-        std::cerr<<"ERROR"<<std::endl;
-        //TODO: Throw error
+        throw std::invalid_argument("Calling Array.get() with an invalid index");
     }
 
     return this->arr[index];
@@ -101,7 +99,7 @@ bool Array<T>::isEmpty() const {
 template<typename T>
 T Array<T>::deleteAt(int index) {
     if (index < 0 || index >= capacity) {
-        //TODO: Error
+        throw std::invalid_argument("Calling Array.deleteAt() with an invalid index");
     }
 
     T toReturn = this->arr[index];
