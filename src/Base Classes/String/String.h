@@ -49,7 +49,7 @@ public:
     //Compare strings
     bool operator==(const String &str) const;
 
-    ////Parse to char* FROM STACKOVERFLOW
+    //Parse to char*
     operator const char *() const { return this->str; }
 
     //Get char at index
@@ -58,7 +58,7 @@ public:
 };
 
 //Input
-std::ifstream &operator>>(std::ifstream &in, String str);
+std::istream &operator>>(std::istream &in, String str);
 
 //Output
 std::ostream &operator<<(std::ostream &out, String str);

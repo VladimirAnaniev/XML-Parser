@@ -7,13 +7,15 @@
 
 class Node {
     String tag;
-    Array<Node> children;
+    Array<Node *> children;
     Node *parent;
     Array<Argument> args;
 
 public:
     /** Constructors **/
-    //TODO
+    Node();
+
+    Node(const Node& node);
 
     /** Methods **/
 
@@ -37,8 +39,12 @@ public:
 
     const Node *getParent() const;
 
+    /** Operations **/
+
+    Node& operator=(const Node& node);
+
     ////Destructor
-    //TODO
+    ~Node();
 };
 
 

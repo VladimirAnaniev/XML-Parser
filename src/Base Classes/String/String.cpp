@@ -13,7 +13,7 @@ String::String(const String &string) : str(nullptr), length(string.length) {
 }
 
 void String::set(const char *str) {
-    if (this->str != nullptr) delete[] this->str;
+    delete[] this->str;
     this->length = (int) strlen(str);
     this->str = new char[this->length + 1];
     strcpy(this->str, str);
@@ -65,10 +65,7 @@ std::ostream &operator<<(std::ostream &out, String str) {
     return out;
 }
 
-std::ifstream &operator>>(std::ifstream &in, String str) {
-//    char line[10000];
-//    in.getline(line, 10000);
-//    str.set(line);
+std::istream &operator>>(std::istream &in, String str) {
     //TODO: HOW DO I READ FROM THE FILE CORRECTLY?
     return in;
 }
