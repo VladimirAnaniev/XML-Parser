@@ -52,11 +52,15 @@ public:
     //Removes the element at a given index and shift all after it to the left
     T deleteAt(int index);
 
+    //Searches for a given element and returns its index, -1 if not present
+    int contains(T elem) const;
+
+    /** Ideas
 //    //Removes a given element if it is in the array
 //    T remove(T elem);
-//
-//    //Returns the index of an element if it is in the array
-//    int find(T elem) const;
+
+     // void forEach(function f); do some action on every element of the array
+     **/
 
     /** Operators **/
     Array &operator=(const Array &arr);

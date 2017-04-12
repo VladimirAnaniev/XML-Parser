@@ -121,3 +121,12 @@ T Array<T>::pop() {
     return this->deleteAt(this->size - 1);
 }
 
+template<typename T>
+int Array<T>::contains(T elem) const {
+    for (int i = 0; i < this->size; i++) {
+        if (this->arr[i] == elem) return i;
+    }
+
+    return -1;
+}
+

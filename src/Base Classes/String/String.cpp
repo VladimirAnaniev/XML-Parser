@@ -119,3 +119,41 @@ void String::concatLine(const char *str) {
     this->concat(str);
     this->newLine();
 }
+
+Array<String> String::split(Array<char> delims) const {
+    Array<String> arr;
+    int lastIndex = 0;
+
+    for (int i = 0; i < this->length; i++) {
+        if (delims.contains(this->str[i]) != -1) {
+            String newstr = this->substring(lastIndex, i);
+            if (newstr.length) arr.push(newstr);
+            lastIndex = i + 1;
+        }
+    }
+    arr.push(substring(lastIndex, this->length + 1));
+
+    return arr;
+}
+
+String String::clearSpaces() {
+    String result;
+    int lastIndex = 0;
+    bool lastWasSpace = false;
+
+    for (int i = 0; i < this->length; i++) {
+        if (this->str[i] == ' ') {
+            if (!lastWasSpace) {
+                result += this->substring(lastIndex, i);
+                lastWasSpace = true;
+            }
+
+            lastIndex = i;
+        } else {
+            lastWasSpace = false;
+        }
+    }
+    result += this->substring(lastIndex, this->length + 1);
+
+    return result;
+}

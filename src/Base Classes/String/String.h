@@ -38,9 +38,17 @@ public:
     //Override the current string
     void set(const char *str);
 
+    //Split the string when given char is seen
     Array<String> split(char c = ' ') const;
 
+    //Split the string when any of the given chars is seen
+    Array<String> split(Array<char> delims) const;
+
+    //Get a substring
     String substring(int start, int end) const;
+
+    //Removes consecutive spaces
+    String clearSpaces();
 
     /** Operators **/
     //Concats two strings together and produces new String
