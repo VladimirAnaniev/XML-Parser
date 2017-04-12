@@ -60,13 +60,19 @@ String::~String() {
     delete[] this->str;
 }
 
-std::ostream &operator<<(std::ostream &out, String str) {
+std::ostream &operator<<(std::ostream &out, String &str) {
     out << str.get();
     return out;
 }
 
-std::istream &operator>>(std::istream &in, String str) {
-    //TODO: HOW DO I READ FROM THE FILE CORRECTLY?
+std::istream &operator>>(std::istream &in, String &str) {
+    str = "";
+    char read[256];
+
+    while (in.getline(read, 256)) {
+        if (read[0] != '\0') str.concatLine(read);
+    }
+
     return in;
 }
 
@@ -87,20 +93,29 @@ Array<String> String::split(char c) const {
     int lastIndex = 0;
 
     for (int i = 0; i < this->length; i++) {
-        if(this->str[i] == c) {
+        if (this->str[i] == c) {
             String newstr = this->substring(lastIndex, i);
-            if(newstr.length) arr.push(newstr);
+            if (newstr.length) arr.push(newstr);
             lastIndex = i + 1;
         }
     }
-    arr.push(substring(lastIndex, this->length+1));
+    arr.push(substring(lastIndex, this->length + 1));
 
     return arr;
 }
 
 String String::substring(int start, int end) const {
-    char* newStr = new char[end-start+1];
-    strncpy(newStr, this->str+start, (size_t) end-start);
-    newStr[end-start] = '\0';
+    char *newStr = new char[end - start + 1];
+    strncpy(newStr, this->str + start, (size_t) end - start);
+    newStr[end - start] = '\0';
     return newStr;
+}
+
+void String::newLine() {
+    this->concat("\n");
+}
+
+void String::concatLine(const char *str) {
+    this->concat(str);
+    this->newLine();
 }

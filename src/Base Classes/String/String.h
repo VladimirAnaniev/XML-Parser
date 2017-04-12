@@ -11,6 +11,9 @@ class String {
     //Make the string double the size
     void resize(int newCells);
 
+    //Adds a symbol for new line
+    void newLine();
+
 public:
     /** Constructors **/
     //Default constructor
@@ -25,6 +28,9 @@ public:
     /** Methods **/
     //concatenates a string after the current value
     void concat(const char *str);
+
+    //Concats a string and adds a new line at the end
+    void concatLine(const char* str);
 
     //Returns the string as a char*
     const char *get() const;
@@ -58,10 +64,10 @@ public:
 };
 
 //Input
-std::istream &operator>>(std::istream &in, String str);
+std::istream &operator>>(std::istream &in, String &str);
 
 //Output
-std::ostream &operator<<(std::ostream &out, String str);
+std::ostream &operator<<(std::ostream &out, String &str);
 
 
 #endif //XML_PARSER_STRING_H

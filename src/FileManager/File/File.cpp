@@ -19,7 +19,11 @@ String File::getPath() const {
 bool File::parse(String path) {
     this->setPath(path);
 
-    return true;
+    std::ifstream file ("testfile.txt");
 
-    //TODO: Open file, read input and parse to node tree.
+   file>>this->data;
+
+    //TODO: Parse and return if it is valid
+
+    return true;
 }
