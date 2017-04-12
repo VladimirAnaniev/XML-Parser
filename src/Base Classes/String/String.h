@@ -51,7 +51,7 @@ public:
     String substring(int start, int end) const;
 
     //Removes consecutive spaces
-    String clearSpaces();
+    String clearSpaces() const;
 
     /** Operators **/
     //Concats two strings together and produces new String

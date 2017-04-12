@@ -16,6 +16,12 @@ public:
     /** Methods **/
     //Listen for commands
     void listen();
+
+    //Write text on the console
+    void write(String str);
+
+    //Write text on the console, then start a new line
+    void writeLine(String str);
 };
 
 

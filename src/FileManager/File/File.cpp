@@ -1,6 +1,10 @@
 #include "File.h"
+#include "../../Parser/Parser.h"
+
+Parser parserr; //tODO: fix name collision
 
 void File::setPath(String path) {
+    //TODO: check it if is valid
     this->path.set(path);
 }
 
@@ -16,14 +20,17 @@ String File::getPath() const {
     return this->path;
 }
 
-bool File::parse(String path) {
-    this->setPath(path);
+void File::parse() {
 
-    std::ifstream file ("testfile.txt");
+    std::ifstream file("testfile.txt");
 
-   file>>this->data;
+    file >> this->data;
 
-    //TODO: Parse and return if it is valid
+    this->parent = parserr.stringToNodeTree(this->data);
 
-    return true;
+    file.close();
+}
+
+Node File::getParent() const {
+    return this->parent;
 }

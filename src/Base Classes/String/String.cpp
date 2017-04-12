@@ -91,15 +91,16 @@ bool String::operator==(const String &str) const {
 Array<String> String::split(char c) const {
     Array<String> arr;
     int lastIndex = 0;
+    String str = this->clearSpaces();
 
-    for (int i = 0; i < this->length; i++) {
-        if (this->str[i] == c) {
-            String newstr = this->substring(lastIndex, i);
+    for (int i = 0; i < str.length; i++) {
+        if (str[i] == c) {
+            String newstr = str.substring(lastIndex, i);
             if (newstr.length) arr.push(newstr);
             lastIndex = i + 1;
         }
     }
-    arr.push(substring(lastIndex, this->length + 1));
+    arr.push(substring(lastIndex, str.length + 1));
 
     return arr;
 }
@@ -123,20 +124,21 @@ void String::concatLine(const char *str) {
 Array<String> String::split(Array<char> delims) const {
     Array<String> arr;
     int lastIndex = 0;
+    String str = this->clearSpaces();
 
-    for (int i = 0; i < this->length; i++) {
-        if (delims.contains(this->str[i]) != -1) {
-            String newstr = this->substring(lastIndex, i);
+    for (int i = 0; i < str.length; i++) {
+        if (delims.contains(str[i]) != -1) {
+            String newstr = str.substring(lastIndex, i);
             if (newstr.length) arr.push(newstr);
             lastIndex = i + 1;
         }
     }
-    arr.push(substring(lastIndex, this->length + 1));
+    arr.push(substring(lastIndex, str.length + 1));
 
     return arr;
 }
 
-String String::clearSpaces() {
+String String::clearSpaces() const {
     String result;
     int lastIndex = 0;
     bool lastWasSpace = false;

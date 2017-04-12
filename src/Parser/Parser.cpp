@@ -31,10 +31,10 @@ String Parser::nodeToStringRecursive(Node node, int depth) const {
     if (node.getChildren().getSize()) {
         result += ">\n";
 
-        Array<Node> children = node.getChildren();
+        Array<Node*> children = node.getChildren();
 
         for (int i = 0; i < children.getSize(); i++) {
-            result += nodeToStringRecursive(children[i], depth + 1);
+            result += nodeToStringRecursive(*children[i], depth + 1);
         }
 
         return result + "<" + node.getTag() + "/>\n";

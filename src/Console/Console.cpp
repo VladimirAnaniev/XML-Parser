@@ -1,5 +1,4 @@
 #include "Console.h"
-#include <iostream>
 #include <cstring>
 
 const short OK = 1;
@@ -17,10 +16,33 @@ short Console::readLine() {
     char input[128];
     std::cin.getline(input, 128);
 
-    //TODO: LOGIC
-    if(strcmp(input, "open") == 0) {
-        this->fm.open("testfile.txt");
+    String str = input;
+
+    Array<String> parts = str.split();
+
+//    switch(parts[0]) {
+//       //TODO: Can it work that way?
+//    }
+
+    if (strcmp(parts[0], "open") == 0) {
+        this->fm.open(parts[1]);
         return OK;
+    } else if (strcmp(parts[0], "close") == 0) {
+        this->fm.close();
+        return OK;
+    } else if (strcmp(parts[0], "save") == 0) {
+        if (parts.getSize() == 1) {
+            this->fm.save();
+        } else if (strcmp(parts[1], "as") == 0) {
+            if (parts.getSize() != 3) return BAD;
+
+            this->fm.saveAs(parts[2]);
+            return OK;
+
+        }
+        else {
+            return BAD;
+        }
     }
 
     if (strcmp(input, "boza") == 0) return END;
@@ -29,7 +51,15 @@ short Console::readLine() {
 }
 
 void Console::invalidCommand() {
-    std::cout << "Invalid command!" << std::endl;
+    this->writeLine("Invalid command!");
+}
+
+void Console::write(String str) {
+    std::cout << str;
+}
+
+void Console::writeLine(String str) {
+    std::cout << str << std::endl;
 }
 
 

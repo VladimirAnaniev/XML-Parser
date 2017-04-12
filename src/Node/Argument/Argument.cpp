@@ -8,10 +8,10 @@ String Argument::getValue() const {
     return this->value;
 }
 
-void Argument::setKey(String key) const {
+void Argument::setKey(String key) {
     this->key = key;
 }
 
-void Argument::setValue(String key) const {
+void Argument::setValue(String key) {
     this->value = value;
 }

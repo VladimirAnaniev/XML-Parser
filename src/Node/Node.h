@@ -33,9 +33,9 @@ public:
 
     String getTag() const;
 
-    Array<Node> &getChildren() const;
+    Array<Node *> getChildren() const;
 
-    Array<Argument> &getArguments() const;
+    Array<Argument> getArguments() const;
 
     const Node *getParent() const;
 

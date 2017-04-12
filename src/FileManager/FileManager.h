@@ -3,7 +3,6 @@
 
 #include "File/File.h"
 
-
 class FileManager {
     bool isOpen;
     File file;
@@ -20,10 +19,10 @@ public:
     void close();
 
     //Save the file at its current path
-    bool save();
+    void save();
 
     //Save the file at a new path
-    bool saveAs(String path);
+    void saveAs(String path);
 };
 
 
