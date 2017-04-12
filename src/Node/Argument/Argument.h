@@ -13,9 +13,9 @@ public:
 
     String getValue() const;
 
-    void setKey() const;
+    void setKey(String key) const;
 
-    void setValue() const;
+    void setValue(String key) const;
 };
 
 

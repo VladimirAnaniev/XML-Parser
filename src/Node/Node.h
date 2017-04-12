@@ -35,7 +35,7 @@ public:
 
     Array<Node> &getChildren() const;
 
-    Array<Node> &getArguments() const;
+    Array<Argument> &getArguments() const;
 
     const Node *getParent() const;
 

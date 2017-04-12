@@ -4,6 +4,13 @@
 #include "../Node/Node.h"
 
 class Parser {
+
+    //Recursive helper function for parsing Node Trees to Strings
+    String nodeToStringRecursive(Node node, int depth) const;
+
+    //Recursive helper function for parsing Strings to Node Trees
+    Node stringToNodeRecursive(String str) const;
+
 public:
     /** Methods **/
     //Checks if a given nodeTree is valid XML

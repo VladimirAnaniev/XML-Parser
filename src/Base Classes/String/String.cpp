@@ -157,3 +157,19 @@ String String::clearSpaces() {
 
     return result;
 }
+
+String operator+(char*c, String str) {
+    String s = c;
+    s.concat(str);
+    return s;
+}
+
+String::String(char c, int n): str(nullptr), length(n) {
+    char* arr = new char[n+1];
+    for(int i=0;i<n; i++) {
+        arr[i] = c;
+    }
+    arr[n] = '\0';
+
+    this->concat(arr);
+}

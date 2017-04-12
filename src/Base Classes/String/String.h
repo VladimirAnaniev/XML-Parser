@@ -22,6 +22,9 @@ public:
     //Copy constructor
     String(const String &string);
 
+    //Repeat single char n times
+    String(char c, int n);
+
     //Desctuctor
     ~String();
 
@@ -76,6 +79,11 @@ std::istream &operator>>(std::istream &in, String &str);
 
 //Output
 std::ostream &operator<<(std::ostream &out, String &str);
+
+//Adding char* and String
+String operator+(char* c, String str);
+
+
 
 
 #endif //XML_PARSER_STRING_H
