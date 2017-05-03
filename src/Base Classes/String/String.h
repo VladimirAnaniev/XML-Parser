@@ -50,8 +50,23 @@ public:
     //Get a substring
     String substring(int start, int end) const;
 
+    //Get the substring after a given index;
+    String after(int index) const;
+
+    //Get the substring before a given index
+    String before(int index) const;
+
     //Removes consecutive spaces
     String clearSpaces() const;
+
+    //Checks if the string begins with a given string
+    bool beginsWith(String str) const;
+
+    //Current string's length
+    int getLength() const;
+
+    //Get the first occurrence of a given character | -1 if not present
+    int indexOf(char c) const;
 
     /** Operators **/
     //Concats two strings together and produces new String
@@ -66,7 +81,7 @@ public:
     //Compare strings
     bool operator==(const String &str) const;
 
-    //Parse to char*
+    //Parse to const char*
     operator const char *() const { return this->str; }
 
     //Get char at index
@@ -82,8 +97,5 @@ std::ostream &operator<<(std::ostream &out, String &str);
 
 //Adding char* and String
 String operator+(char* c, String str);
-
-
-
 
 #endif //XML_PARSER_STRING_H

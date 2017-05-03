@@ -31,28 +31,32 @@ String Parser::nodeToStringRecursive(Node node, int depth) const {
     if (node.getChildren().getSize()) {
         result += ">\n";
 
-        Array<Node*> children = node.getChildren();
+        Array<Node *> children = node.getChildren();
 
         for (int i = 0; i < children.getSize(); i++) {
             result += nodeToStringRecursive(*children[i], depth + 1);
         }
 
-        return result + "<" + node.getTag() + "/>\n";
+        return result + "</" + node.getTag() + ">\n";
     }
 
     return result + "/>\n";
 }
 
-Node Parser::stringToNodeTree(String str) const {
-    Node parent;
+Node *Parser::stringToNodeTree(String str) const {
+    if (!str.beginsWith("<?xml version=\"1.0\"?>")) {
+        return nullptr; //TODO: Throw error
+    }
 
-    parent = stringToNodeRecursive(str);
+    Node *parent;
+
+    parent = stringToNodeRecursive(str.after(str.indexOf('>')));
 
     return parent;
 }
 
-Node Parser::stringToNodeRecursive(String str) const {
-    Node node;
+Node *Parser::stringToNodeRecursive(String str) const {
+    Node *node = new Node;
 
     //Set params and recursively set its children
 

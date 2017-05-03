@@ -9,7 +9,7 @@ class Parser {
     String nodeToStringRecursive(Node node, int depth) const;
 
     //Recursive helper function for parsing Strings to Node Trees
-    Node stringToNodeRecursive(String str) const;
+    Node *stringToNodeRecursive(String str) const;
 
 public:
     /** Methods **/
@@ -20,7 +20,7 @@ public:
     bool isValid(String str) const;
 
     //Converts a string to a node tree
-    Node stringToNodeTree(String str) const;
+    Node *stringToNodeTree(String str) const;
 
     //Converts a nodeTree to a string
     String nodeTreeToString(Node nodeTree) const;

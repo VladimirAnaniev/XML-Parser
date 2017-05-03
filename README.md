@@ -5,8 +5,7 @@ Command line interface for parsing and editing XML files
 
 - [Installation](#installation)
 - [Usage](#usage)
-    - [Open Files](#open-files)
-    - [Close \ Save Files](#close-\-save-files)
+    - [Open, Close and Save Files](#open-close-and-save-files)
     - [Format XML](#format-xml)
     - [Manipulate Elements](#manipulate-elements)
     - TODO...
@@ -16,21 +15,16 @@ Command line interface for parsing and editing XML files
 TODO
 
 ## Usage
-### Open Files
+### Open, Close and Save Files
 `````````````
 open [File Path]
 `````````````
-
-### Close \ Save Files
-- Saving:
 `````````````
 save
 `````````````
-- Saving as:
 `````````````
 save as [File Path]
 `````````````
-- Closing without save:
 `````````````
 close
 `````````````

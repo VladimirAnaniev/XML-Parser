@@ -160,18 +160,45 @@ String String::clearSpaces() const {
     return result;
 }
 
-String operator+(char*c, String str) {
+String operator+(char *c, String str) {
     String s = c;
     s.concat(str);
     return s;
 }
 
-String::String(char c, int n): str(nullptr), length(n) {
-    char* arr = new char[n+1];
-    for(int i=0;i<n; i++) {
+String::String(char c, int n) : str(nullptr), length(n) {
+    char *arr = new char[n + 1];
+    for (int i = 0; i < n; i++) {
         arr[i] = c;
     }
     arr[n] = '\0';
 
     this->concat(arr);
+}
+
+bool String::beginsWith(String str) const {
+    for (int i = 0; i < str.length; i++) {
+        if (this->str[i] != str[i]) return false;
+    }
+    return true;
+}
+
+int String::getLength() const {
+    return this->length;
+}
+
+String String::before(int index) const {
+    return this->substring(0, index);
+}
+
+String String::after(int index) const {
+    return this->substring(0, this->length);
+}
+
+int String::indexOf(char c) const {
+    for (int i = 0; i < this->length; i++) {
+        if (this->str[i] == c) return i;
+    }
+
+    return -1;
 }
