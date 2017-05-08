@@ -53,7 +53,7 @@ public:
     T deleteAt(int index);
 
     //Searches for a given element and returns its index, -1 if not present
-    int contains(T elem) const;
+    int indexOf(T elem) const;
 
     /** Ideas
 //    //Removes a given element if it is in the array

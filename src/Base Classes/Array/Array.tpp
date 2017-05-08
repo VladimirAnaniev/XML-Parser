@@ -122,7 +122,7 @@ T Array<T>::pop() {
 }
 
 template<typename T>
-int Array<T>::contains(T elem) const {
+int Array<T>::indexOf(T elem) const {
     for (int i = 0; i < this->size; i++) {
         if (this->arr[i] == elem) return i;
     }

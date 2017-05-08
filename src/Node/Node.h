@@ -5,11 +5,20 @@
 #include "../Base Classes/String/String.h"
 #include "../Base Classes/Array/Array.h"
 
-class Node {
+struct NodeData {
     String tag;
+    String id;
+    Array<Argument> args;
+};
+
+class Node {
+    NodeData data;
     Array<Node *> children;
     Node *parent;
-    Array<Argument> args;
+
+    void copy(const Node& node);
+
+    void setChildren(Array<Node *> children);
 
 public:
     /** Constructors **/
@@ -19,9 +28,9 @@ public:
 
     /** Methods **/
 
-    void addChild(Node child);
+    void addChild(Node *child);
 
-    Node removeChild(int index);
+    Node *removeChild(int index);
 
     void changeParent(Node *parent);
 
@@ -38,6 +47,10 @@ public:
     Array<Argument> getArguments() const;
 
     const Node *getParent() const;
+
+    void setId(String id);
+
+    String getId() const;
 
     /** Operations **/
 

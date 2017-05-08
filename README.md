@@ -9,7 +9,6 @@ Command line interface for parsing and editing XML files
     - [Format XML](#format-xml)
     - [Manipulate Elements](#manipulate-elements)
     - TODO...
-- [Contributing](#contributing)
 
 ## Installation
 TODO
@@ -33,7 +32,4 @@ close
 TODO
 
 ### Manipulate Elements
-TODO
-
-## Contributing
 TODO
