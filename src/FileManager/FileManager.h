@@ -13,18 +13,22 @@ public:
 
     /** Methods **/
     //Open a file and read its data
-    void open(String path);
+    bool open(String path);
 
     //Close the file without saving
-    void close();
+    bool close();
 
     //Save the file at its current path
-    void save();
+    bool save();
 
     //Save the file at a new path
-    void saveAs(String path);
+    bool saveAs(String path);
 
-    File &getFile();
+    //Print the contents of the file on the console, formatted
+    bool print();
+
+//    // Returns the opened file
+//    File &getFile();
 };
 
 

@@ -12,6 +12,9 @@ class Parser {
     Node *stringToNodeRecursive(String str) const;
 
 public:
+    ////Empty default constructor
+    Parser() {};
+
     /** Methods **/
     //Checks if a given nodeTree is valid XML
     bool isValid(Node *nodeTree) const;

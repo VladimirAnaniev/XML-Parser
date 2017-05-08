@@ -12,6 +12,9 @@ class File {
     //Change the data in the file
     void setData(String data);
 
+    //Checks if the current path is valid
+    bool isValid() const;
+
 public:
     /** Methods **/
     //Get the file's path
@@ -24,7 +27,7 @@ public:
     Node *getParent() const;
 
     //Change the path of this file.
-    void setPath(String path);
+    bool setPath(String path);
 
     //parse the data
     void parse();

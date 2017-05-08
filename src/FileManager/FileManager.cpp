@@ -2,52 +2,81 @@
 #include "../Console/Console.h"
 #include "../Parser/Parser.h"
 
-Console console;
+#include "../Globals.h"
 
-void FileManager::open(String path) {
+using namespace Globals;
+
+bool FileManager::open(String path) {
     if (this->isOpen) {
         console.writeLine("A file is already open, close it first before opening another.");
-    } else {
-        this->file.setPath(path);
-        this->file.parse();
-        this->isOpen = true;
+        return false;
     }
+
+    bool valid = this->file.setPath(path);
+    if (!valid) {
+        console.writeLine("Invalid file path, please try again.");
+        return true;
+    }
+
+    this->file.parse();
+    this->isOpen = true;
+
+    console.writeLine("Successfully opened file: " + path);
+    return true;
 }
 
 FileManager::FileManager() : isOpen(false) {}
 
-void FileManager::close() {
+bool FileManager::close() {
     if (this->isOpen) {
         this->isOpen = false;
-        console.writeLine(this->file.getPath() + " was closed.");
-    } else console.writeLine("You cannot close when you haven't opened a file.");
+        console.writeLine("File closed: " + this->file.getPath());
+        return true;
+    }
+
+    console.writeLine("You cannot close when you haven't opened a file.");
+    return false;
 }
 
 
-void FileManager::save() {
+bool FileManager::save() {
     if (this->isOpen) {
         Parser parser;
 
-        std::ofstream file(this->file.getPath());
-        file.clear(); //Is this what i think?
+        std::ofstream file;
+        file.open(this->file.getPath(), std::ios_base::out | std::ios_base::trunc);
         file << parser.nodeTreeToString(this->file.getParent());
         file.close();
 
-        console.writeLine(this->file.getPath() + " was saved.");
-
-        this->close();
-    } else {
-        console.writeLine("You cannot save when you haven't opened a file.");
+        console.writeLine("File saved: " + this->file.getPath());
+        return true;
     }
+
+    console.writeLine("You cannot save when you haven't opened a file.");
+    return false;
 }
 
-void FileManager::saveAs(String path) {
+bool FileManager::saveAs(String path) {
     this->file.setPath(path);
-    this->save();
+
+    return this->save();
 }
 
-File& FileManager::getFile() {
-    return this->file;
+//File &FileManager::getFile() {
+//    if(this->isOpen) return this->file;
+//
+//    //Throw error
+//    //What to return as default??
+//}
+
+bool FileManager::print() {
+    if (this->isOpen) {
+        console.writeLine(parser.nodeTreeToString(this->file.getParent()));
+        return true;
+    } else {
+        console.writeLine("You cannot print when you haven't opened a file");
+        return false;
+    }
 }
 
 

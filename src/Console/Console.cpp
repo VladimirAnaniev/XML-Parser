@@ -1,17 +1,18 @@
 #include "Console.h"
 #include <cstring>
-#include "../Globals.cpp"
+#include "../Globals.h"
 
 using namespace Globals;
 
-void Console::listen() {
-    short response = readLine();
-    if (response == END) return;
-    else if (response == BAD) invalidCommand();
-    listen();
+void Console::listen() const {
+    bool loop = true;
+    while(true) {
+        loop = readLine();
+        if(!loop) this->invalidCommand(); //TODO: REFACTOR THIS
+    }
 }
 
-short Console::readLine() {
+bool Console::readLine() const {
     char input[128];
     std::cin.getline(input, 128);
 
@@ -19,50 +20,20 @@ short Console::readLine() {
 
     Array<String> parts = str.split();
 
-//    switch(parts[0]) {
-//       //TODO: Can it work that way?
-//    }
-    //TODO: SEND EVENTS TO DISPATCHER
+    Command c(parts);
 
-    if (strcmp(parts[0], OPEN) == 0) {
-        this->fm.open(parts[1]);
-        return OK;
-    } else if (strcmp(parts[0], CLOSE) == 0) {
-        this->fm.close();
-        return OK;
-    } else if (strcmp(parts[0], SAVE) == 0) {
-        if (parts.getSize() == 1) {
-            this->fm.save();
-        } else if (strcmp(parts[1], AS) == 0) {
-            if (parts.getSize() != 3) return BAD;
-
-            this->fm.saveAs(parts[2]);
-            return OK;
-
-        }
-        else {
-            return BAD;
-        }
-    } else if (strcmp(parts[0], PRINT) == 0) {
-       // this->
-    }
-
-    if (strcmp(input, "boza") == 0) return END;
-
-    //TODO: SEND EVENTS TO DISPATCHER
-
-    return BAD;
+    return dispatcher.dispatch(c);
 }
 
-void Console::invalidCommand() {
+void Console::invalidCommand() const {
     this->writeLine("Invalid command!");
 }
 
-void Console::write(String str) {
+void Console::write(String str) const {
     std::cout << str;
 }
 
-void Console::writeLine(String str) {
+void Console::writeLine(String str) const {
     std::cout << str << std::endl;
 }
 

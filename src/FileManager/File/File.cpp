@@ -1,9 +1,9 @@
 #include "File.h"
 #include "../../Parser/Parser.h"
 
-void File::setPath(String path) {
-    //TODO: check it if is valid
+bool File::setPath(String path) {
     this->path.set(path);
+    return this->isValid();
 }
 
 void File::setData(String data) {
@@ -21,7 +21,7 @@ String File::getPath() const {
 void File::parse() {
     Parser parser;
 
-    std::ifstream file("testfile.txt");
+    std::ifstream file(this->path);
 
     file >> this->data;
 
@@ -32,4 +32,9 @@ void File::parse() {
 
 Node *File::getParent() const {
     return this->parent;
+}
+
+bool File::isValid() const {
+    std::ifstream file(this->path);
+    return (file) ? true : false;
 }

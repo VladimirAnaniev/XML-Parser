@@ -122,7 +122,7 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/FileManager.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Globals.cpp">
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Globals.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.cpp">

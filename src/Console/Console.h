@@ -4,24 +4,25 @@
 #include "../FileManager/FileManager.h"
 
 class Console {
-    FileManager fm;
-
     //reads from console, returns executeCommand(parseCommand(input));
-    short readLine();
+    bool readLine() const;
 
     //Informs the user they entered an invalid command
-    void invalidCommand();
+    void invalidCommand() const;
 
 public:
+    ////Empty default constructor
+    Console() {};
+
     /** Methods **/
     //Listen for commands
-    void listen();
+    void listen() const;
 
     //Write text on the console
-    void write(String str);
+    void write(String str) const;
 
     //Write text on the console, then start a new line
-    void writeLine(String str);
+    void writeLine(String str) const;
 };
 
 
