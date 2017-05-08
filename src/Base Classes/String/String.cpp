@@ -127,7 +127,7 @@ Array<String> String::split(Array<char> delims) const {
     String str = this->clearSpaces();
 
     for (int i = 0; i < str.length; i++) {
-        if (delims.contains(str[i]) != -1) {
+        if (delims.indexOf(str[i]) != -1) {
             String newstr = str.substring(lastIndex, i);
             if (newstr.length) arr.push(newstr);
             lastIndex = i + 1;

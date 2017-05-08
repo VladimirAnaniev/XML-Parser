@@ -98,6 +98,18 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.h">
 			<Option target="XML_Parser"/>
 		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Dispatcher/Command/Command.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Dispatcher/Command/Command.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Dispatcher/Dispatcher.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Dispatcher/Dispatcher.h">
+			<Option target="XML_Parser"/>
+		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/File/File.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
@@ -108,6 +120,9 @@
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/FileManager.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Globals.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.cpp">

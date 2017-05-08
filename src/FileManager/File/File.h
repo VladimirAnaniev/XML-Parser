@@ -7,7 +7,7 @@
 class File {
     String path;
     String data;
-    Node parent;
+    Node *parent;
 
     //Change the data in the file
     void setData(String data);
@@ -21,7 +21,7 @@ public:
     String getData() const;
 
     //get the file's Node tree
-    Node getParent() const;
+    Node *getParent() const;
 
     //Change the path of this file.
     void setPath(String path);

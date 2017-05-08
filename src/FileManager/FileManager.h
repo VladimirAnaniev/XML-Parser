@@ -23,6 +23,8 @@ public:
 
     //Save the file at a new path
     void saveAs(String path);
+
+    File &getFile();
 };
 
 
