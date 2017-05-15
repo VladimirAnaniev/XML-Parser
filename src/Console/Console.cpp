@@ -1,18 +1,17 @@
 #include "Console.h"
+#include "../Dispatcher/Command/Command.h"
+#include "../Dispatcher/Dispatcher.h"
 #include <cstring>
-#include "../Globals.h"
 
-using namespace Globals;
-
-void Console::listen() const {
+void Console::listen() {
     bool loop = true;
     while(true) {
-        loop = readLine();
-        if(!loop) this->invalidCommand(); //TODO: REFACTOR THIS
+        loop = Console::readLine();
+        if(!loop) Console::invalidCommand(); //TODO: REFACTOR THIS
     }
 }
 
-bool Console::readLine() const {
+bool Console::readLine() {
     char input[128];
     std::cin.getline(input, 128);
 
@@ -22,18 +21,18 @@ bool Console::readLine() const {
 
     Command c(parts);
 
-    return dispatcher.dispatch(c);
+    return Dispatcher::dispatch(c);
 }
 
-void Console::invalidCommand() const {
-    this->writeLine("Invalid command!");
+void Console::invalidCommand() {
+    Console::writeLine("Invalid command!");
 }
 
-void Console::write(String str) const {
+void Console::write(String str) {
     std::cout << str;
 }
 
-void Console::writeLine(String str) const {
+void Console::writeLine(String str) {
     std::cout << str << std::endl;
 }
 

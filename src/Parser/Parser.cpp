@@ -1,6 +1,6 @@
 #include "Parser.h"
 
-bool Parser::isValid(Node *nodeTree, Array<String> ids) const {
+bool Parser::isValid(Node *nodeTree, Array<String> ids) {
     if(ids.indexOf(nodeTree->getId()) >= 0) {
         //Id is not unique
         return false;
@@ -10,7 +10,7 @@ bool Parser::isValid(Node *nodeTree, Array<String> ids) const {
         Array<Node*> children = nodeTree->getChildren();
 
         for(int i=0;i<children.getSize();i++) {
-            if(!this->isValid(children[i], ids)) {
+            if(!Parser::isValid(children[i], ids)) {
                 return false;
             }
         }
@@ -19,17 +19,17 @@ bool Parser::isValid(Node *nodeTree, Array<String> ids) const {
     return true;
 }
 
-bool Parser::isValid(String str) const {
-    return this->isValid(this->stringToNodeTree(str), Array<String>());
+bool Parser::isValid(String str) {
+    return Parser::isValid(Parser::stringToNodeTree(str), Array<String>());
 }
 
-String Parser::nodeTreeToString(Node *nodeTree) const {
-    String result = nodeToStringRecursive(nodeTree, 0);
+String Parser::nodeTreeToString(Node *nodeTree) {
+    String result = Parser::nodeToStringRecursive(nodeTree, 0);
 
     return result;
 }
 
-String Parser::nodeToStringRecursive(Node *node, int depth) const {
+String Parser::nodeToStringRecursive(Node *node, int depth) {
     String result;
 
     result += String(' ', depth * 4) + "<" + node->getTag() + " ";
@@ -45,7 +45,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) const {
         Array<Node *> children = node->getChildren();
 
         for (int i = 0; i < children.getSize(); i++) {
-            result += nodeToStringRecursive(children[i], depth + 1);
+            result += Parser::nodeToStringRecursive(children[i], depth + 1);
         }
 
         return result + "</" + node->getTag() + ">\n";
@@ -54,19 +54,19 @@ String Parser::nodeToStringRecursive(Node *node, int depth) const {
     return result + "/>\n";
 }
 
-Node *Parser::stringToNodeTree(String str) const {
+Node *Parser::stringToNodeTree(String str) {
     if (!str.beginsWith("<?xml version=\"1.0\"?>")) {
         return nullptr; //TODO: Throw error
     }
 
     Node *parent;
 
-    parent = stringToNodeRecursive(str.after(str.indexOf('>')));
+    parent = Parser::stringToNodeRecursive(str.after(str.indexOf('>')));
 
     return parent;
 }
 
-Node *Parser::stringToNodeRecursive(String str) const {
+Node *Parser::stringToNodeRecursive(String str) {
     Node *node = new Node;
 
     //Find the index of the end of this node's declaration

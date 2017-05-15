@@ -8,20 +8,20 @@ using namespace Globals;
 
 bool FileManager::open(String path) {
     if (this->isOpen) {
-        console.writeLine("A file is already open, close it first before opening another.");
+        Console::writeLine("A file is already open, close it first before opening another.");
         return false;
     }
 
     bool valid = this->file.setPath(path);
     if (!valid) {
-        console.writeLine("Invalid file path, please try again.");
+        Console::writeLine("Invalid file path, please try again.");
         return true;
     }
 
     this->file.parse();
     this->isOpen = true;
 
-    console.writeLine("Successfully opened file: " + path);
+    Console::writeLine("Successfully opened file: " + path);
     return true;
 }
 
@@ -30,11 +30,11 @@ FileManager::FileManager() : isOpen(false) {}
 bool FileManager::close() {
     if (this->isOpen) {
         this->isOpen = false;
-        console.writeLine("File closed: " + this->file.getPath());
+        Console::writeLine("File closed: " + this->file.getPath());
         return true;
     }
 
-    console.writeLine("You cannot close when you haven't opened a file.");
+    Console::writeLine("You cannot close when you haven't opened a file.");
     return false;
 }
 
@@ -48,11 +48,11 @@ bool FileManager::save() {
         file << parser.nodeTreeToString(this->file.getParent());
         file.close();
 
-        console.writeLine("File saved: " + this->file.getPath());
+        Console::writeLine("File saved: " + this->file.getPath());
         return true;
     }
 
-    console.writeLine("You cannot save when you haven't opened a file.");
+    Console::writeLine("You cannot save when you haven't opened a file.");
     return false;
 }
 
@@ -71,10 +71,10 @@ bool FileManager::saveAs(String path) {
 
 bool FileManager::print() {
     if (this->isOpen) {
-        console.writeLine(parser.nodeTreeToString(this->file.getParent()));
+        Console::writeLine(Parser::nodeTreeToString(this->file.getParent()));
         return true;
     } else {
-        console.writeLine("You cannot print when you haven't opened a file");
+        Console::writeLine("You cannot print when you haven't opened a file");
         return false;
     }
 }

@@ -6,27 +6,24 @@
 class Parser {
 
     //Recursive helper function for parsing Node Trees to Strings
-    String nodeToStringRecursive(Node *node, int depth) const;
+    static String nodeToStringRecursive(Node *node, int depth);
 
     //Recursive helper function for parsing Strings to Node Trees
-    Node *stringToNodeRecursive(String str) const;
+    static Node *stringToNodeRecursive(String str);
 
 public:
-    ////Empty default constructor
-    Parser() {};
-
     /** Methods **/
     //Checks if a given nodeTree is valid XML
-    bool isValid(Node *nodeTree, Array<String> ids) const;
+    static bool isValid(Node *nodeTree, Array<String> ids);
 
     //Checks if a given string is valid XML
-    bool isValid(String str) const;
+    static bool isValid(String str);
 
     //Converts a string to a node tree
-    Node *stringToNodeTree(String str) const;
+    static Node *stringToNodeTree(String str);
 
     //Converts a nodeTree to a string
-    String nodeTreeToString(Node *nodeTree) const;
+    static String nodeTreeToString(Node *nodeTree);
 };
 
 

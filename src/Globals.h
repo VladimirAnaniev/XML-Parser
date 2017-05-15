@@ -21,10 +21,9 @@ namespace Globals {
     static const String PRINT = "print";
 
     // Static classes ??
-    const Console console;
-    static const Dispatcher dispatcher;
+    //const Console console;
     static FileManager fileManager;
-    static const Parser parser;
+    //static const Parser parser;
 
     //TODO: Add system console feedback
 }

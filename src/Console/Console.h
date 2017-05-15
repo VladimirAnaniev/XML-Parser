@@ -5,24 +5,21 @@
 
 class Console {
     //reads from console, returns executeCommand(parseCommand(input));
-    bool readLine() const;
+    static bool readLine();
 
     //Informs the user they entered an invalid command
-    void invalidCommand() const;
+    static void invalidCommand();
 
 public:
-    ////Empty default constructor
-    Console() {};
-
     /** Methods **/
     //Listen for commands
-    void listen() const;
+    static void listen();
 
     //Write text on the console
-    void write(String str) const;
+    static void write(String str);
 
     //Write text on the console, then start a new line
-    void writeLine(String str) const;
+    static void writeLine(String str);
 };
 
 

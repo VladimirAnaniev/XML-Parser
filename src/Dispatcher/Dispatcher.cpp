@@ -5,7 +5,7 @@
 
 using namespace Globals;
 
-bool Dispatcher::dispatch(Command c) const {
+bool Dispatcher::dispatch(Command c) {
     String action = c.getAction();
 
     if (strcmp(action, OPEN) == 0) {
