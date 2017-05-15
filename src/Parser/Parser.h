@@ -17,7 +17,7 @@ public:
 
     /** Methods **/
     //Checks if a given nodeTree is valid XML
-    bool isValid(Node *nodeTree) const;
+    bool isValid(Node *nodeTree, Array<String> ids) const;
 
     //Checks if a given string is valid XML
     bool isValid(String str) const;

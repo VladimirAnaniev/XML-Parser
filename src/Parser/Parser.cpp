@@ -1,13 +1,26 @@
 #include "Parser.h"
 
-bool Parser::isValid(Node *nodeTree) const {
-    //TODO: Check for unique Ids
+bool Parser::isValid(Node *nodeTree, Array<String> ids) const {
+    if(ids.indexOf(nodeTree->getId()) >= 0) {
+        //Id is not unique
+        return false;
+    } else {
+        ids.push(nodeTree->getId());
 
-    return false;
+        Array<Node*> children = nodeTree->getChildren();
+
+        for(int i=0;i<children.getSize();i++) {
+            if(!this->isValid(children[i], ids)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 bool Parser::isValid(String str) const {
-    return this->isValid(this->stringToNodeTree(str));
+    return this->isValid(this->stringToNodeTree(str), Array<String>());
 }
 
 String Parser::nodeTreeToString(Node *nodeTree) const {
