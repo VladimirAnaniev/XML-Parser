@@ -180,6 +180,7 @@ bool String::beginsWith(String str) const {
     for (int i = 0; i < str.length; i++) {
         if (this->str[i] != str[i]) return false;
     }
+
     return true;
 }
 
@@ -192,7 +193,7 @@ String String::before(int index) const {
 }
 
 String String::after(int index) const {
-    return this->substring(0, this->length);
+    return this->substring(index, this->length);
 }
 
 int String::indexOf(char c) const {
@@ -201,4 +202,26 @@ int String::indexOf(char c) const {
     }
 
     return -1;
+}
+
+int String::indexOf(String str) const {
+    int startIndex = this->indexOf(str[0]);
+
+    for (int i = 1; i < str.length; i++) {
+        if (this->str[startIndex + i] != str[i]) {
+            return -1;
+        }
+    }
+
+    return startIndex;
+}
+
+bool String::endsWith(String str) const {
+    for (int i = 0; i < str.length; i++) {
+        if (this->str[this->getLength() - 1 - i] != str[str.getLength() - 1 - i]) {
+            return false;
+        }
+    }
+
+    return true;
 }

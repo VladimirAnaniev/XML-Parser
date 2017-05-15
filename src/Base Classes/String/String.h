@@ -62,11 +62,17 @@ public:
     //Checks if the string begins with a given string
     bool beginsWith(String str) const;
 
+    //Checks if the string begins with a given string
+    bool endsWith(String str) const;
+
     //Current string's length
     int getLength() const;
 
     //Get the first occurrence of a given character | -1 if not present
     int indexOf(char c) const;
+
+    //Get the first occurrence of a given String | -1 if not present
+    int indexOf(String str) const;
 
     /** Operators **/
     //Concats two strings together and produces new String

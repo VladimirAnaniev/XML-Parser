@@ -7,9 +7,7 @@ bool Parser::isValid(Node *nodeTree) const {
 }
 
 bool Parser::isValid(String str) const {
-    //TODO
-
-    return false;
+    return this->isValid(this->stringToNodeTree(str));
 }
 
 String Parser::nodeTreeToString(Node *nodeTree) const {
@@ -58,7 +56,37 @@ Node *Parser::stringToNodeTree(String str) const {
 Node *Parser::stringToNodeRecursive(String str) const {
     Node *node = new Node;
 
-    //Set params and recursively set its children
+    //Find the index of the end of this node's declaration
+    int delimIndex = str.indexOf('>') + 1;
+
+    String thisNode = str.before(delimIndex); //All props of the node are in this part
+    String rest = str.after(delimIndex);
+
+    if (thisNode.beginsWith("<")) {
+        thisNode = thisNode.after(1); //Remove the starting "<"
+
+        Array<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
+
+        String tag = thisParts[0];
+
+        if(thisNode.endsWith("/>")) {
+            //No children, closed
+
+            node->setTag(tag);
+
+        } else {
+            //Opened, find end and call recursively for its children..
+            rest = rest.before(rest.indexOf("</"+tag+">"));
+
+            //TODO: split into chunks and call recursively for all children
+
+
+
+        }
+
+    } else {
+        //TODO: Throw error, Invalid File
+    }
 
     return node;
 }
