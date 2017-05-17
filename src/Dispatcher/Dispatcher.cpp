@@ -17,8 +17,6 @@ bool Dispatcher::dispatch(Command c) {
     } else if (strcmp(action, SAVE_AS) == 0) {
         return fileManager.saveAs(c.getArguments()[0]);
     } else if (strcmp(action, PRINT) == 0) {
-        //Check for optionals
-
         return fileManager.print();
     } else {
         return false;

@@ -11,19 +11,24 @@ class Parser {
     //Recursive helper function for parsing Strings to Node Trees
     static Node *stringToNodeRecursive(String str);
 
+    //Converts an integer to a sting
+    static String intToString(int n);
+
 public:
     /** Methods **/
-    //Checks if a given nodeTree is valid XML
-    static bool isValid(Node *nodeTree, Array<String> ids);
-
-    //Checks if a given string is valid XML
-    static bool isValid(String str);
+    //Checks if a given nodeTree is valid XML and places unique Ids
+    static void validate(Node *nodeTree, Array<String> &ids);
 
     //Converts a string to a node tree
     static Node *stringToNodeTree(String str);
 
     //Converts a nodeTree to a string
     static String nodeTreeToString(Node *nodeTree);
+
+    //Generates unique id
+    static String generateUniqueId(Node *node);
+
+
 };
 
 

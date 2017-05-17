@@ -1,26 +1,17 @@
 #include "Parser.h"
 
-bool Parser::isValid(Node *nodeTree, Array<String> ids) {
-    if(ids.indexOf(nodeTree->getId()) >= 0) {
-        //Id is not unique
-        return false;
-    } else {
-        ids.push(nodeTree->getId());
-
-        Array<Node*> children = nodeTree->getChildren();
-
-        for(int i=0;i<children.getSize();i++) {
-            if(!Parser::isValid(children[i], ids)) {
-                return false;
-            }
-        }
+void Parser::validate(Node *nodeTree, Array<String> &ids) {
+    if (ids.indexOf(nodeTree->getId()) >= 0) {
+        nodeTree->setId(Parser::generateUniqueId(nodeTree));
     }
 
-    return true;
-}
+    ids.push(nodeTree->getId());
 
-bool Parser::isValid(String str) {
-    return Parser::isValid(Parser::stringToNodeTree(str), Array<String>());
+    Array<Node *> children = nodeTree->getChildren();
+
+    for (int i = 0; i < children.getSize(); i++) {
+        Parser::validate(children[i], ids);
+    }
 }
 
 String Parser::nodeTreeToString(Node *nodeTree) {
@@ -55,13 +46,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
 }
 
 Node *Parser::stringToNodeTree(String str) {
-    if (!str.beginsWith("<?xml version=\"1.0\"?>")) {
-        return nullptr; //TODO: Throw error
-    }
-
-    Node *parent;
-
-    parent = Parser::stringToNodeRecursive(str.after(str.indexOf('>')));
+    Node *parent = Parser::stringToNodeRecursive(str.after(str.indexOf('>')));
 
     return parent;
 }
@@ -82,14 +67,14 @@ Node *Parser::stringToNodeRecursive(String str) {
 
         String tag = thisParts[0];
 
-        if(thisNode.endsWith("/>")) {
+        if (thisNode.endsWith("/>")) {
             //No children, closed
 
             node->setTag(tag);
 
         } else {
             //Opened, find end and call recursively for its children..
-            rest = rest.before(rest.indexOf("</"+tag+">"));
+            rest = rest.before(rest.indexOf("</" + tag + ">"));
 
             //TODO: split into chunks and call recursively for all children
 
@@ -102,4 +87,21 @@ Node *Parser::stringToNodeRecursive(String str) {
     }
 
     return node;
+}
+
+String Parser::generateUniqueId(Node *node) {
+    return node->getParent()->getId() + "_" +
+           Parser::intToString(node->getParent()->getChildren().indexOf(node)) + "*";
+    // The * indicates it is generated
+}
+
+String Parser::intToString(int n) {
+    String str;
+
+    while (n) {
+        str.prepend((char) (n % 10) + '0');
+        n /= 10;
+    }
+
+    return str;
 }

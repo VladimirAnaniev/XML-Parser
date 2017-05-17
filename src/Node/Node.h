@@ -9,6 +9,7 @@ struct NodeData {
     String tag;
     String id;
     Array<Argument> args;
+    String content;
 };
 
 class Node {
@@ -23,6 +24,8 @@ class Node {
 public:
     /** Constructors **/
     Node();
+
+    Node(String str);
 
     Node(const Node& node);
 
@@ -52,9 +55,15 @@ public:
 
     String getId() const;
 
+    void setContent(String content);
+
+    String getContent() const;
+
     /** Operations **/
 
     Node& operator=(const Node& node);
+
+    operator String();
 
     ////Destructor
     ~Node();

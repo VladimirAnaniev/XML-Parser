@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "../Parser/Parser.h"
 
 Node::Node() {
     this->parent = nullptr;
@@ -86,5 +87,23 @@ void Node::setChildren(Array<Node *> children) {
         children[i]->changeParent(this);
     }
 }
+
+Node::Node(String str) {
+    //TODO
+}
+
+void Node::setContent(String content) {
+    this->data.content = content;
+}
+
+String Node::getContent() const {
+    return this->data.content;
+}
+
+Node::operator String() {
+    return Parser::nodeTreeToString(this);
+}
+
+
 
 

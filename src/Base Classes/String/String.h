@@ -23,7 +23,7 @@ public:
     String(const String &string);
 
     //Repeat single char n times
-    String(char c, int n);
+    String(char c, int n = 1);
 
     //Desctuctor
     ~String();
@@ -33,7 +33,7 @@ public:
     void concat(const char *str);
 
     //Concats a string and adds a new line at the end
-    void concatLine(const char* str);
+    void concatLine(const char *str);
 
     //Returns the string as a char*
     const char *get() const;
@@ -74,6 +74,8 @@ public:
     //Get the first occurrence of a given String | -1 if not present
     int indexOf(String str) const;
 
+    void prepend(String str);
+
     /** Operators **/
     //Concats two strings together and produces new String
     String operator+(const String &str) const;
@@ -102,6 +104,6 @@ std::istream &operator>>(std::istream &in, String &str);
 std::ostream &operator<<(std::ostream &out, String &str);
 
 //Adding char* and String
-String operator+(char* c, String str);
+String operator+(char *c, String str);
 
 #endif //XML_PARSER_STRING_H

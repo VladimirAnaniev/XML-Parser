@@ -225,3 +225,7 @@ bool String::endsWith(String str) const {
 
     return true;
 }
+
+void String::prepend(String str) {
+    this->set(str + this->get());
+}

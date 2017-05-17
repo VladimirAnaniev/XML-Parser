@@ -20,10 +20,7 @@ namespace Globals {
     static const String SAVE_AS = "save as";
     static const String PRINT = "print";
 
-    // Static classes ??
-    //const Console console;
     static FileManager fileManager;
-    //static const Parser parser;
 
     //TODO: Add system console feedback
 }
