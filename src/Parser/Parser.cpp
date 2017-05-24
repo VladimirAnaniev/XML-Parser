@@ -26,7 +26,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
 
     result += String(' ', depth * 4) + "<" + node->getTag() + " ";
     Array<Argument> args = node->getArguments();
-    for (int i = 0; i < args.getSize(); i++) {
+    for (int i = 0; i < args.getSize(); i++) { //TODO: ID
         Argument argument = args[i];
         result += argument.getKey() + "=\"" + argument.getValue() + "\" ";
     }
@@ -49,7 +49,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
 }
 
 Node *Parser::stringToNodeTree(String str) {
-    Node *parent = Parser::stringToNodeRecursive(str.after(str.indexOf('>')));
+    Node *parent = Parser::stringToNodeRecursive(str);
 
     return parent;
 }
@@ -58,7 +58,7 @@ Node *Parser::stringToNodeRecursive(String str) {
     Node *node = new Node;
 
     //Find the index of the end of this node's declaration
-    int delimIndex = str.indexOf('>') + 1;
+    int delimIndex = str.indexOf('>');
 
     String thisNode = str.before(delimIndex); //All props of the node are in this part
     String rest = str.after(delimIndex);
@@ -68,11 +68,11 @@ Node *Parser::stringToNodeRecursive(String str) {
 
         Array<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
 
-        String tag = thisParts[0];
+        String tag = thisParts.deleteAt(0);
 
-        if (!thisNode.endsWith("/>")) {
+        if (!thisNode.endsWith("/")) {
             //Opened, find end and call recursively for its children..
-            rest = rest.before(rest.indexOf("</" + tag + ">"));
+            //rest = rest.before(rest.indexOf("</" + tag + ">")); //TODO
 
             //TODO: split into chunks and call recursively for all children
 

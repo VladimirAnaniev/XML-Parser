@@ -16,6 +16,12 @@ class File {
     bool isValid() const;
 
 public:
+    ////Constructor
+    File();
+
+    //Copy
+    File(const File &file);
+
     /** Methods **/
     //Get the file's path
     String getPath() const;
@@ -31,6 +37,12 @@ public:
 
     //parse the data
     void parse();
+
+    /** Operators **/
+    File &operator=(const File &file);
+
+    //Destructor
+    ~File();
 };
 
 

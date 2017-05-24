@@ -74,7 +74,11 @@ public:
     //Get the first occurrence of a given String | -1 if not present
     int indexOf(String str) const;
 
+    //Concat a string at the beginning of another string
     void prepend(String str);
+
+    //Return an array of all occurrences of a given character
+    Array<int> occurrencesOf(char c) const;
 
     /** Operators **/
     //Concats two strings together and produces new String

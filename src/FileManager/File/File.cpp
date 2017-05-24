@@ -25,6 +25,7 @@ void File::parse() {
 
     file >> this->data;
 
+    if(this->parent) delete this->parent;
     this->parent = parser.stringToNodeTree(this->data);
 
     file.close();
@@ -37,4 +38,20 @@ Node *File::getParent() const {
 bool File::isValid() const {
     std::ifstream file(this->path);
     return (file) ? true : false;
+}
+
+File::File() : parent(nullptr) {}
+
+File::File(const File &file): path(file.path), parent(nullptr) {
+    this->parse();
+}
+
+File &File::operator=(const File &file) {
+    this->path = file.path;
+    this->parse();
+    return *this;
+}
+
+File::~File() {
+    delete this->parent;
 }

@@ -1,1 +1,4 @@
-testFile
+<parent id=1>
+    <childOne id=1_1/>
+    <childTwo id=1/>
+</parent>

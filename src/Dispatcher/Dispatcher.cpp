@@ -5,18 +5,17 @@
 
 using namespace Globals;
 
-bool Dispatcher::dispatch(Command c) {
-    String action = c.getAction();
+bool Dispatcher::dispatch(Command command) {
 
-    if (strcmp(action, OPEN) == 0) {
-        return fileManager.open(c.getArguments()[0]);
-    } else if (strcmp(action, CLOSE) == 0) {
+    if (command == OPEN) {
+        return fileManager.open(command.getArguments()[0]);
+    } else if (command == CLOSE) {
         return fileManager.close();
-    } else if (strcmp(action, SAVE) == 0) {
+    } else if (command == SAVE) {
         return fileManager.save();
-    } else if (strcmp(action, SAVE_AS) == 0) {
-        return fileManager.saveAs(c.getArguments()[0]);
-    } else if (strcmp(action, PRINT) == 0) {
+    } else if (command == SAVE_AS) {
+        return fileManager.saveAs(command.getArguments()[0]);
+    } else if (command == PRINT) {
         return fileManager.print();
     } else {
         return false;

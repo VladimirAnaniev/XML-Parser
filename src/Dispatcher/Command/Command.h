@@ -18,6 +18,9 @@ public:
     //Returns the arguments of the command if such exist
     Array<String> getArguments() const;
 
+    /** Operators **/
+    bool operator==(String action) const;
+
 };
 
 

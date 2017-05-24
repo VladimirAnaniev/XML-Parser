@@ -173,7 +173,7 @@ String::String(char c, int n) : str(nullptr), length(n) {
     }
     arr[n] = '\0';
 
-    this->concat(arr);
+    this->set(arr);
 }
 
 bool String::beginsWith(String str) const {
@@ -205,15 +205,21 @@ int String::indexOf(char c) const {
 }
 
 int String::indexOf(String str) const {
-    int startIndex = this->indexOf(str[0]);
+    Array<int> indexes = this->occurrencesOf(str[0]);
 
-    for (int i = 1; i < str.length; i++) {
-        if (this->str[startIndex + i] != str[i]) {
-            return -1;
+    for (int o = 0; o < indexes.getSize(); o++) {
+        bool flag = true;
+        for (int i = 1; i < str.length; i++) {
+            if (this->str[indexes[o] + i] != str[i]) {
+                flag = false;
+                break;
+            }
         }
+        if (flag) return indexes[o];
     }
 
-    return startIndex;
+
+    return -1;
 }
 
 bool String::endsWith(String str) const {
@@ -228,4 +234,16 @@ bool String::endsWith(String str) const {
 
 void String::prepend(String str) {
     this->set(str + this->get());
+}
+
+Array<int> String::occurrencesOf(char c) const {
+    String str = *this;
+    Array<int> result;
+
+    while (str.indexOf(c) >= 0) {
+        result.push(str.indexOf(c));
+        str = str.after(c);
+    }
+
+    return result;
 }

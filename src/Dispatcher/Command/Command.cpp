@@ -1,3 +1,4 @@
+#include <cstring>
 #include "Command.h"
 
 #include "../../Globals.h"
@@ -27,4 +28,8 @@ Command::Command(Array<String> input) {
             this->optionals.push(this->arguments.deleteAt(i));
         }
     }
+}
+
+bool Command::operator==(String action) const {
+    return strcmp(this->action, action) == 0;
 }
