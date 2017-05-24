@@ -12,6 +12,8 @@ void Argument::setKey(String key) {
     this->key = key;
 }
 
-void Argument::setValue(String key) {
+void Argument::setValue(String value) {
     this->value = value;
 }
+
+Argument::Argument(String key, String value) : key(key), value(value) {}

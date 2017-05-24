@@ -1,3 +1,4 @@
+#include <cstring>
 #include "Parser.h"
 
 void Parser::validate(Node *nodeTree, Array<String> &ids) {
@@ -30,7 +31,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
         result += argument.getKey() + "=\"" + argument.getValue() + "\" ";
     }
 
-    if (node->getChildren().getSize()) {
+    if (node->getChildren().getSize() || node->getContent()) {
         result += ">\n";
 
         Array<Node *> children = node->getChildren();
@@ -38,6 +39,8 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
         for (int i = 0; i < children.getSize(); i++) {
             result += Parser::nodeToStringRecursive(children[i], depth + 1);
         }
+
+        result += node->getContent() + "\n";
 
         return result + "</" + node->getTag() + ">\n";
     }
@@ -67,19 +70,26 @@ Node *Parser::stringToNodeRecursive(String str) {
 
         String tag = thisParts[0];
 
-        if (thisNode.endsWith("/>")) {
-            //No children, closed
-
-            node->setTag(tag);
-
-        } else {
+        if (!thisNode.endsWith("/>")) {
             //Opened, find end and call recursively for its children..
             rest = rest.before(rest.indexOf("</" + tag + ">"));
 
             //TODO: split into chunks and call recursively for all children
 
+            node->setContent(rest);
+        }
 
+        //Set node's parameters
+        node->setTag(tag);
 
+        for (int i = 0; i < thisParts.getSize(); i++) {
+            Array<String> pair = thisParts[i].split('=');
+
+            if(strcmp(pair[0], "id") == 0) {
+                node->setId(pair[1]);
+            } else {
+                node->addArgument(Argument(pair[0], pair[1]));
+            }
         }
 
     } else {

@@ -67,11 +67,11 @@ void Node::setTag(String tag) {
 }
 
 void Node::setId(String id) {
-    this->data.id = id;
+    this->data.id.set(id);
 }
 
 String Node::getId() const {
-    return this->data.id;
+    return this->data.id.get();
 }
 
 void Node::copy(const Node &node) {
@@ -89,7 +89,8 @@ void Node::setChildren(Array<Node *> children) {
 }
 
 Node::Node(String str) {
-    //TODO
+    this->parent = nullptr;
+    this->copy(*Parser::stringToNodeTree(str));
 }
 
 void Node::setContent(String content) {

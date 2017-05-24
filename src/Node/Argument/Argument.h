@@ -8,6 +8,9 @@ class Argument {
     String value;
 
 public:
+    //// Constructor
+    Argument(String key = "", String value = "");
+
     /** Methods **/
     String getKey() const;
 
@@ -15,7 +18,7 @@ public:
 
     void setKey(String key);
 
-    void setValue(String key);
+    void setValue(String value);
 };
 
 

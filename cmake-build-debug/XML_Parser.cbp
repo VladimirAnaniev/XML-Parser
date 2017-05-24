@@ -17,21 +17,21 @@
 					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/vladimir/Programming/XML-Parser/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="/home/vladimir/Programming/XML-Parser/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
 					<Build command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/vladimir/Programming/XML-Parser/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -44,12 +44,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1/x86_64-redhat-linux"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 XML_Parser"/>
@@ -65,12 +65,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1/x86_64-redhat-linux"/>
 					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/../../../../include/c++/6.3.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/6.3.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/gmake -j4 -f &quot;/home/vladimir/Programming/XML-Parser/cmake-build-debug/Makefile&quot;  VERBOSE=1 XML_Parser/fast"/>
@@ -129,6 +129,12 @@
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Id/Id.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Id/Id.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.cpp">
