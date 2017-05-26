@@ -26,7 +26,7 @@ public:
     static String nodeTreeToString(Node *nodeTree);
 
     //Generates unique id
-    static String generateUniqueId(Node *node);
+    static String generateUniqueId();
 
 
 };

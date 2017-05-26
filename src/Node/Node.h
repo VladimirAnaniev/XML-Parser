@@ -4,11 +4,10 @@
 #include "Argument/Argument.h"
 #include "../Base Classes/String/String.h"
 #include "../Base Classes/Array/Array.h"
-#include "Id/Id.h"
 
 struct NodeData {
     String tag;
-    Id id;
+    String id;
     Array<Argument> args;
     String content;
 };

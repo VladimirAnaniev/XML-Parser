@@ -1,4 +1,4 @@
-<parent id=1>
-    <childOne id=1_1/>
-    <childTwo id=1/>
+<parent deca="gosho_i_pesho">
+    <childOne name="gosho" age="20"/>
+    <childTwo name="pehso" age="12"/>
 </parent>

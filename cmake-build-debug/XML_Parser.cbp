@@ -131,12 +131,6 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Id/Id.cpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Id/Id.h">
-			<Option target="XML_Parser"/>
-		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>

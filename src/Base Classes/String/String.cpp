@@ -45,10 +45,12 @@ String &String::operator=(const String &str) {
 }
 
 String String::operator+(const String &str) const {
-    String newstr;
-    newstr.concat(this->get());
-    newstr.concat(str.get());
-    return newstr;
+    char *newStr = new char[this->getLength() + str.getLength() + 1];
+
+    strcpy(newStr, this->str);
+    strcat(newStr, str.str);
+
+    return String(newStr);
 }
 
 String &String::operator+=(const String &str) {
@@ -237,13 +239,38 @@ void String::prepend(String str) {
 }
 
 Array<int> String::occurrencesOf(char c) const {
-    String str = *this;
     Array<int> result;
 
-    while (str.indexOf(c) >= 0) {
-        result.push(str.indexOf(c));
-        str = str.after(c);
+    for (int i = 0; i < this->length; i++) {
+        if (this->operator[](i) == c) result.push(i);
     }
 
     return result;
+}
+
+String String::generateRandom(int len) {
+    char *arr = new char[len + 1];
+    for (int i = 0; i < len; i++) {
+        int alphabet = 26, digits = 10;
+        int random = rand() % (2 * alphabet + digits);
+        if (random < alphabet) {
+            arr[i] = (char) ('a' + random);
+        } else if (random < 2 * alphabet) {
+            arr[i] = (char) ('A' + (random - alphabet));
+        } else {
+            arr[i] = (char) ('0' + (random - 2 * alphabet));
+        }
+    }
+
+    String str(arr);
+    delete[] arr;
+    return str;
+}
+
+int String::indexOfBackwards(char c) const {
+    for (int i = this->length - 1; i >= 0; i--) {
+        if (this->str[i] == c) return i;
+    }
+
+    return -1;
 }

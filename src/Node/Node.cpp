@@ -38,6 +38,7 @@ void Node::changeParent(Node *parent) {
 
 void Node::addChild(Node *child) {
     this->children.push(child);
+    child->changeParent(this);
 }
 
 Array<Argument> Node::getArguments() const {
@@ -63,7 +64,7 @@ Node *Node::removeChild(int index) {
 }
 
 void Node::setTag(String tag) {
-    this->data.tag = tag;
+    this->data.tag.set(tag);
 }
 
 void Node::setId(String id) {
@@ -71,7 +72,7 @@ void Node::setId(String id) {
 }
 
 String Node::getId() const {
-    return this->data.id.get();
+    return this->data.id;
 }
 
 void Node::copy(const Node &node) {

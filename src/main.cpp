@@ -4,6 +4,7 @@
 
 
 int main() {
+    srand((unsigned int)time(0));
     Console console;
     console.listen();
 

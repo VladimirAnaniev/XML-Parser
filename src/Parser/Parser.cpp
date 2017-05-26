@@ -2,8 +2,10 @@
 #include "Parser.h"
 
 void Parser::validate(Node *nodeTree, Array<String> &ids) {
-    if (ids.indexOf(nodeTree->getId()) >= 0) {
-        nodeTree->setId(Parser::generateUniqueId(nodeTree));
+    if (ids.indexOf(nodeTree->getId()) >= 0 || nodeTree->getId() == String("")) {
+        do {
+            nodeTree->setId(Parser::generateUniqueId());
+        } while (ids.indexOf(nodeTree->getId()) >= 0);
     }
 
     ids.push(nodeTree->getId());
@@ -24,11 +26,12 @@ String Parser::nodeTreeToString(Node *nodeTree) {
 String Parser::nodeToStringRecursive(Node *node, int depth) {
     String result;
 
-    result += String(' ', depth * 4) + "<" + node->getTag() + " ";
+    result += String(' ', depth * 4) + "<" + node->getTag() + " id=\"" + node->getId() + "\"";
     Array<Argument> args = node->getArguments();
-    for (int i = 0; i < args.getSize(); i++) { //TODO: ID
+    for (int i = 0; i < args.getSize(); i++) {
         Argument argument = args[i];
-        result += argument.getKey() + "=\"" + argument.getValue() + "\" ";
+        String arg = String(" ") + argument.getKey() + "=\"" + argument.getValue() + "\"";
+        result += arg;
     }
 
     if (node->getChildren().getSize() || node->getContent()) {
@@ -51,14 +54,20 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
 Node *Parser::stringToNodeTree(String str) {
     Node *parent = Parser::stringToNodeRecursive(str);
 
+    Array<String> ids;
+    Parser::validate(parent, ids);
+
     return parent;
 }
 
 Node *Parser::stringToNodeRecursive(String str) {
     Node *node = new Node;
+    bool isOpened = false;
+
+    str = str.substring(str.indexOf('<'), str.indexOfBackwards('>') + 1);
 
     //Find the index of the end of this node's declaration
-    int delimIndex = str.indexOf('>');
+    int delimIndex = str.indexOf('>') + 1;
 
     String thisNode = str.before(delimIndex); //All props of the node are in this part
     String rest = str.after(delimIndex);
@@ -66,30 +75,42 @@ Node *Parser::stringToNodeRecursive(String str) {
     if (thisNode.beginsWith("<")) {
         thisNode = thisNode.after(1); //Remove the starting "<"
 
-        Array<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
-
-        String tag = thisParts.deleteAt(0);
-
-        if (!thisNode.endsWith("/")) {
-            //Opened, find end and call recursively for its children..
-            //rest = rest.before(rest.indexOf("</" + tag + ">")); //TODO
-
-            //TODO: split into chunks and call recursively for all children
-
-            node->setContent(rest);
+        if (thisNode.endsWith("/>")) {
+            // No children or content
+            thisNode = thisNode.before(thisNode.indexOf("/>"));
+        } else {
+            //Has children or content, mark it as open
+            thisNode = thisNode.before(thisNode.getLength() - 1);
+            isOpened = true;
         }
 
-        //Set node's parameters
+        Array<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
+        String tag = thisParts.deleteAt(0); //Tag is always first
+
+        /**Set node's parameters **/
         node->setTag(tag);
 
         for (int i = 0; i < thisParts.getSize(); i++) {
+            //For each pair of arguments, split by '=' and add to args array
             Array<String> pair = thisParts[i].split('=');
+            if (pair[1].beginsWith("\"") && pair[1].endsWith("\""))
+                pair[1] = pair[1].substring(1, pair[1].getLength() - 1);
 
-            if(strcmp(pair[0], "id") == 0) {
+            if (strcmp(pair[0], "id") == 0) {
                 node->setId(pair[1]);
             } else {
                 node->addArgument(Argument(pair[0], pair[1]));
             }
+        }
+
+        if (isOpened) {
+            //Opened, find end and call recursively for its children..
+            rest = rest.before(rest.indexOf(String("</") + tag + ">"));
+
+            //TODO: split into chunks and add all children
+            node->addChild(Parser::stringToNodeRecursive(rest));
+
+            //node->setContent(rest);
         }
 
     } else {
@@ -99,9 +120,8 @@ Node *Parser::stringToNodeRecursive(String str) {
     return node;
 }
 
-String Parser::generateUniqueId(Node *node) {
-    return node->getParent()->getId() + "_" +
-           Parser::intToString(node->getParent()->getChildren().indexOf(node)) + "*";
+String Parser::generateUniqueId() {
+    return String::generateRandom(5) + "*";
     // The * indicates it is generated
 }
 

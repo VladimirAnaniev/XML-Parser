@@ -80,6 +80,11 @@ public:
     //Return an array of all occurrences of a given character
     Array<int> occurrencesOf(char c) const;
 
+    //Generates a random string with given length
+    static String generateRandom(int len);
+
+    int indexOfBackwards(char c) const;
+
     /** Operators **/
     //Concats two strings together and produces new String
     String operator+(const String &str) const;
