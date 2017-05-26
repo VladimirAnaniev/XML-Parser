@@ -3,19 +3,18 @@
 #include "String.h"
 
 String::String(const char *str) : str(nullptr) {
-    int len = (int) strlen(str);
     this->set(str);
-    this->length = len;
 }
 
-String::String(const String &string) : str(nullptr), length(string.length) {
+String::String(const String &string) : str(nullptr) {
     this->set(string);
 }
 
 void String::set(const char *str) {
     delete[] this->str;
     this->length = (int) strlen(str);
-    this->str = new char[this->length + 1];
+    this->capacity = calculateCapacity(length);
+    this->str = new char[capacity];
     strcpy(this->str, str);
 }
 
@@ -23,22 +22,25 @@ const char *String::get() const {
     return this->str;
 }
 
-void String::resize(int newCells) {
-    this->length += newCells;
+void String::resize() {
+    this->capacity *= 2;
 
-    char *newStr = new char[this->length];
+    char *newStr = new char[this->capacity];
     strcpy(newStr, this->str);
     delete[] this->str;
     this->str = newStr;
 }
 
 void String::concat(const char *str) {
-    resize((int) strlen(str));
+    int len = (int) strlen(str);
+    while (capacity <= this->length + len + 1) {
+        resize();
+    }
     strcat(this->str, str);
+    this->length += len;
 }
 
 String &String::operator=(const String &str) {
-    this->length = str.length;
     this->set(str.get());
 
     return *this;
@@ -72,7 +74,7 @@ std::istream &operator>>(std::istream &in, String &str) {
     char read[256];
 
     while (in.getline(read, 256)) {
-        if (read[0] != '\0') str.concatLine(read);
+        if (read[0] != '\0') str.concat(String(read) + "\n");
     }
 
     return in;
@@ -111,16 +113,7 @@ String String::substring(int start, int end) const {
     char *newStr = new char[end - start + 1];
     strncpy(newStr, this->str + start, (size_t) end - start);
     newStr[end - start] = '\0';
-    return newStr;
-}
-
-void String::newLine() {
-    this->concat("\n");
-}
-
-void String::concatLine(const char *str) {
-    this->concat(str);
-    this->newLine();
+    return String(newStr);
 }
 
 Array<String> String::split(Array<char> delims) const {
@@ -163,12 +156,12 @@ String String::clearSpaces() const {
 }
 
 String operator+(char *c, String str) {
-    String s = c;
+    String s(c);
     s.concat(str);
     return s;
 }
 
-String::String(char c, int n) : str(nullptr), length(n) {
+String::String(char c, int n) : str(nullptr) {
     char *arr = new char[n + 1];
     for (int i = 0; i < n; i++) {
         arr[i] = c;
@@ -273,4 +266,12 @@ int String::indexOfBackwards(char c) const {
     }
 
     return -1;
+}
+
+int String::calculateCapacity(int length) {
+    int capacity = 16;
+    while (capacity <= length) {
+        capacity *= 2;
+    }
+    return capacity;
 }

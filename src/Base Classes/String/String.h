@@ -7,12 +7,14 @@
 class String {
     char *str;
     int length;
+    int capacity;
 
     //Make the string double the size
-    void resize(int newCells);
+    void resize();
 
-    //Adds a symbol for new line
-    void newLine();
+    //Calculates the capacity of the string for a given length
+    //Capacities are powers of 2
+    static int calculateCapacity(int length);
 
 public:
     /** Constructors **/
@@ -31,9 +33,6 @@ public:
     /** Methods **/
     //concatenates a string after the current value
     void concat(const char *str);
-
-    //Concats a string and adds a new line at the end
-    void concatLine(const char *str);
 
     //Returns the string as a char*
     const char *get() const;

@@ -9,7 +9,7 @@ class Parser {
     static String nodeToStringRecursive(Node *node, int depth);
 
     //Recursive helper function for parsing Strings to Node Trees
-    static Node *stringToNodeRecursive(String str);
+    static Node *stringToNodeRecursive(String &str);
 
     //Converts an integer to a sting
     static String intToString(int n);

@@ -34,7 +34,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
         result += arg;
     }
 
-    if (node->getChildren().getSize() || node->getContent()) {
+    if (node->getChildren().getSize() || node->getContent().getLength()) {
         result += ">\n";
 
         Array<Node *> children = node->getChildren();
@@ -43,9 +43,11 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
             result += Parser::nodeToStringRecursive(children[i], depth + 1);
         }
 
-        result += node->getContent() + "\n";
+        if(node->getContent().getLength()) {
+            result += node->getContent() + "\n";
+        }
 
-        return result + "</" + node->getTag() + ">\n";
+        return result + String(' ', depth * 4) + "</" + node->getTag() + ">\n";
     }
 
     return result + "/>\n";
@@ -60,7 +62,7 @@ Node *Parser::stringToNodeTree(String str) {
     return parent;
 }
 
-Node *Parser::stringToNodeRecursive(String str) {
+Node *Parser::stringToNodeRecursive(String &str) {
     Node *node = new Node;
     bool isOpened = false;
 
@@ -105,12 +107,16 @@ Node *Parser::stringToNodeRecursive(String str) {
 
         if (isOpened) {
             //Opened, find end and call recursively for its children..
-            rest = rest.before(rest.indexOf(String("</") + tag + ">"));
+            String closingTag = String("</") + tag + ">";
+            String inside = rest.before(rest.indexOf(closingTag));
+            str = rest.after(rest.indexOf(String(closingTag)) + closingTag.getLength());
 
             //TODO: split into chunks and add all children
-            node->addChild(Parser::stringToNodeRecursive(rest));
-
-            //node->setContent(rest);
+            while(inside.getLength()) {
+                node->addChild(Parser::stringToNodeRecursive(inside));
+            }
+        } else {
+            str = rest;
         }
 
     } else {

@@ -1,4 +1,9 @@
-<parent deca="gosho_i_pesho">
-    <childOne name="gosho" age="20"/>
-    <childTwo name="pehso" age="12"/>
+<parent id="UaKGa*" deca="gosho_i_pesho">
+    <child id="UUKQW*" name="gosho" age="20">
+        <grandkid id="sFrB7*" name="gogo" age="1"/>
+    </child>
+    <wife id="asd" name="baba-stanka"/>
+    <child id="9xEYu*" name="tosho" age="50">
+        <wife id="oPBfH*" name="mimi" age="77"/>
+    </child>
 </parent>

@@ -49,6 +49,7 @@ bool FileManager::save() {
         file.close();
 
         Console::writeLine("File saved: " + this->file.getPath());
+        this->close();
         return true;
     }
 
