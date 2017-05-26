@@ -23,6 +23,9 @@ class Node {
     // Set children
     void setChildren(Array<Node *> children);
 
+    //Destroy this and its children recursively
+    void destroy();
+
 public:
     /** Constructors **/
     // Default

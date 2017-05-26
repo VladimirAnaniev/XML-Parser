@@ -25,10 +25,14 @@ String Parser::nodeTreeToString(Node *nodeTree) {
 
 String Parser::nodeToStringRecursive(Node *node, int depth) {
     String result;
+    String offset(' ', depth * 4); // Children are 4 spaces to the right compared to their parents
 
-    result += String(' ', depth * 4) + "<" + node->getTag() + " id=\"" + node->getId() + "\"";
+    //All elements have a tag and an id
+    result += offset + "<" + node->getTag() + " id=\"" + node->getId() + "\"";
+
     Array<Argument> args = node->getArguments();
     for (int i = 0; i < args.getSize(); i++) {
+        //Add all arguments in format [key]="[value]"
         Argument argument = args[i];
         String arg = String(" ") + argument.getKey() + "=\"" + argument.getValue() + "\"";
         result += arg;
@@ -38,16 +42,17 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
         result += ">\n";
 
         Array<Node *> children = node->getChildren();
-
         for (int i = 0; i < children.getSize(); i++) {
+            // Call recursively for each node's children
             result += Parser::nodeToStringRecursive(children[i], depth + 1);
         }
 
         if(node->getContent().getLength()) {
-            result += node->getContent() + "\n";
+            //Content should be printed with bigger offset, like children are
+            result += offset + String(' ', 4) + node->getContent() + "\n";
         }
 
-        return result + String(' ', depth * 4) + "</" + node->getTag() + ">\n";
+        return result + offset + "</" + node->getTag() + ">\n";
     }
 
     return result + "/>\n";
@@ -56,6 +61,8 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
 Node *Parser::stringToNodeTree(String str) {
     Node *parent = Parser::stringToNodeRecursive(str);
 
+    //After parsing validate the created node tree
+    //=> create unique ids where necessary
     Array<String> ids;
     Parser::validate(parent, ids);
 
@@ -109,13 +116,18 @@ Node *Parser::stringToNodeRecursive(String &str) {
             //Opened, find end and call recursively for its children..
             String closingTag = String("</") + tag + ">";
             String inside = rest.before(rest.indexOf(closingTag));
+
+            //Set str to the string that remains so that the recursion can continue
             str = rest.after(rest.indexOf(String(closingTag)) + closingTag.getLength());
 
-            //TODO: split into chunks and add all children
-            while(inside.getLength()) {
+            while(inside.getLength()) { //If inside is empty, there are no more children to add
+                //Pass the inside as a parameter for the 'child' node
+                //After parsing it will change that to the remainder after it's closing tag
+                // that's why str was set to the remainder of the input string earlier
                 node->addChild(Parser::stringToNodeRecursive(inside));
             }
         } else {
+            // Same as earlier, in order for the elements after the current one to be parsed
             str = rest;
         }
 

@@ -41,7 +41,7 @@ public:
     /** Operators **/
     File &operator=(const File &file);
 
-    //Destructor
+    ////Destructor
     ~File();
 };
 

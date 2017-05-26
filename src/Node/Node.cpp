@@ -6,7 +6,7 @@ Node::Node() {
 }
 
 Node::~Node() {
-    delete[] this->parent;
+    this->destroy();
 }
 
 Node::Node(const Node &node) {
@@ -106,6 +106,16 @@ Node::operator String() {
     return Parser::nodeTreeToString(this);
 }
 
+void Node::destroy() {
+    for(int i=0;i<this->children.getSize();i++) {
+        this->children[i]->destroy();
+    }
 
+    // remove this from its parents' children
+    this->parent->removeChild(this->parent->children.indexOf(this));
+
+    //delete this->parent; If we delete the parent we may lose the whole tree?
+    //Someone should be holding the top of the tree so no need to worry?
+}
 
 

@@ -13,7 +13,7 @@ Array<T>::~Array() {
 }
 
 template<typename T>
-Array<T>::Array(const Array &arr) :  capacity(arr.capacity), size(arr.size) {
+Array<T>::Array(const Array &arr) : capacity(arr.capacity), size(arr.size) {
     this->arr = new T[arr.capacity];
     this->copy(arr.arr, arr.size);
 }
