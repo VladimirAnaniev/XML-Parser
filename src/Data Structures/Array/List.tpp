@@ -1,7 +1,6 @@
 #include <iostream>
 #include "List.h"
 
-
 template<typename T>
 List<T>::List(int size): capacity(size), size(0) {
     this->arr = new T[size];

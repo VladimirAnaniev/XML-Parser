@@ -80,28 +80,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Array/Array.h">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Array/Array.tpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/String/String.cpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/String/String.h">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Tree/Tree.cpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Tree/Tree.h">
-			<Option target="XML_Parser"/>
-		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Array/List.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Array/List.tpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/String/String.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/String/String.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Tree/TreeNode.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Tree/TreeNode.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Dispatcher/Command/Command.cpp">
@@ -131,22 +131,25 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Globals.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.cpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Argument/Argument.h">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.cpp">
-			<Option target="XML_Parser"/>
-		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Node/Node.h">
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Pair.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/XML Tree/Argument/Argument.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/XML Tree/Argument/Argument.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/XML Tree/XML_Node.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/XML Tree/XML_Node.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/main.cpp">

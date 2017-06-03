@@ -1,9 +1,10 @@
 #ifndef XML_PARSER_ARGUMENT_H
 #define XML_PARSER_ARGUMENT_H
 
-#include "../../Base Classes/String/String.h"
+#include "../../Data Structures/String/String.h"
+#include "../../Interfaces/Pair.h"
 
-class Argument {
+class Argument : public Pair<String, String> {
     String key;
     String value;
 

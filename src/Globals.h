@@ -1,7 +1,7 @@
 #ifndef XML_PARSER_GLOBALS
 #define XML_PARSER_GLOBALS
 
-#include "Base Classes/String/String.h"
+#include "Data Structures/String/String.h"
 #include "Console/Console.h"
 #include "Dispatcher/Dispatcher.h"
 #include "Parser/Parser.h"

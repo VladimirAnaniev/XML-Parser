@@ -21,7 +21,7 @@ bool FileManager::open(String path) {
     this->file.parse();
     this->isOpen = true;
 
-    Console::writeLine("Successfully opened file: " + path);
+    Console::writeLine(String("Successfully opened file: ") + path);
     return true;
 }
 
@@ -30,7 +30,7 @@ FileManager::FileManager() : isOpen(false) {}
 bool FileManager::close() {
     if (this->isOpen) {
         this->isOpen = false;
-        Console::writeLine("File closed: " + this->file.getPath());
+        Console::writeLine(String("File closed: ") + this->file.getPath());
         return true;
     }
 
@@ -48,7 +48,7 @@ bool FileManager::save() {
         file << parser.nodeTreeToString(this->file.getParent());
         file.close();
 
-        Console::writeLine("File saved: " + this->file.getPath());
+        Console::writeLine(String("File saved: ") + this->file.getPath());
         this->close();
         return true;
     }

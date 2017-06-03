@@ -1,7 +1,7 @@
 #ifndef XML_PARSER_COMMAND_H
 #define XML_PARSER_COMMAND_H
 
-#include "../../Base Classes/String/String.h"
+#include "../../Data Structures/String/String.h"
 
 class Command {
     String action;

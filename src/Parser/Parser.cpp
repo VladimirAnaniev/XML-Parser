@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Parser.h"
 
-void Parser::validate(Node *nodeTree, List<String> &ids) {
+void Parser::validate(XML_Node *nodeTree, List<String> &ids) {
     if (ids.indexOf(nodeTree->getId()) >= 0 || nodeTree->getId() == String("")) {
         do {
             nodeTree->setId(Parser::generateUniqueId());
@@ -10,20 +10,20 @@ void Parser::validate(Node *nodeTree, List<String> &ids) {
 
     ids.push(nodeTree->getId());
 
-    List<Node *> children = nodeTree->getChildren();
+    List<TreeNode *> children = nodeTree->getChildren();
 
     for (int i = 0; i < children.getSize(); i++) {
-        Parser::validate(children[i], ids);
+        Parser::validate((XML_Node *)children[i], ids);
     }
 }
 
-String Parser::nodeTreeToString(Node *nodeTree) {
+String Parser::nodeTreeToString(XML_Node *nodeTree) {
     String result = Parser::nodeToStringRecursive(nodeTree, 0);
 
     return result;
 }
 
-String Parser::nodeToStringRecursive(Node *node, int depth) {
+String Parser::nodeToStringRecursive(XML_Node *node, int depth) {
     String result;
     String offset(' ', depth * 4); // Children are 4 spaces to the right compared to their parents
 
@@ -41,10 +41,10 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
     if (node->getChildren().getSize() || node->getContent().getLength()) {
         result += ">\n";
 
-        List<Node *> children = node->getChildren();
+        List<TreeNode *> children = node->getChildren();
         for (int i = 0; i < children.getSize(); i++) {
             // Call recursively for each node's children
-            result += Parser::nodeToStringRecursive(children[i], depth + 1);
+            result += Parser::nodeToStringRecursive((XML_Node *)children[i], depth + 1);
         }
 
         if(node->getContent().getLength()) {
@@ -58,8 +58,8 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
     return result + "/>\n";
 }
 
-Node *Parser::stringToNodeTree(String str) {
-    Node *parent = Parser::stringToNodeRecursive(str);
+XML_Node *Parser::stringToNodeTree(String str) {
+    XML_Node *parent = Parser::stringToNodeRecursive(str);
 
     //After parsing validate the created node tree
     //=> create unique ids where necessary
@@ -69,8 +69,8 @@ Node *Parser::stringToNodeTree(String str) {
     return parent;
 }
 
-Node *Parser::stringToNodeRecursive(String &str) {
-    Node *node = new Node;
+XML_Node *Parser::stringToNodeRecursive(String &str) {
+    XML_Node *node = new XML_Node;
     bool isOpened = false;
 
     str = str.substring(str.indexOf('<'), str.indexOfBackwards('>') + 1);

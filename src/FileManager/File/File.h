@@ -1,13 +1,13 @@
 #ifndef XML_PARSER_FILE_H
 #define XML_PARSER_FILE_H
 
-#include "../../Node/Node.h"
-#include "../../Base Classes/String/String.h"
+#include "../../XML Tree/XML_Node.h"
+#include "../../Data Structures/String/String.h"
 
 class File {
     String path;
     String data;
-    Node *parent;
+    XML_Node *root;
 
     //Change the data in the file
     void setData(String data);
@@ -29,8 +29,8 @@ public:
     //get the file's data
     String getData() const;
 
-    //get the file's Node tree
-    Node *getParent() const;
+    //get the file's XML Tree tree
+    XML_Node *getParent() const;
 
     //Change the path of this file.
     bool setPath(String path);

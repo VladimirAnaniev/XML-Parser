@@ -25,14 +25,14 @@ void File::parse() {
 
     file >> this->data;
 
-    if(this->parent) delete this->parent;
-    this->parent = parser.stringToNodeTree(this->data);
+    if(this->root) delete this->root;
+    this->root = parser.stringToNodeTree(this->data);
 
     file.close();
 }
 
-Node *File::getParent() const {
-    return this->parent;
+XML_Node *File::getParent() const {
+    return this->root;
 }
 
 bool File::isValid() const {
@@ -40,9 +40,9 @@ bool File::isValid() const {
     return (file) ? true : false;
 }
 
-File::File() : parent(nullptr) {}
+File::File() : root(nullptr) {}
 
-File::File(const File &file): path(file.path), parent(nullptr) {
+File::File(const File &file): path(file.path), root(nullptr) {
     this->parse();
 }
 
@@ -53,5 +53,5 @@ File &File::operator=(const File &file) {
 }
 
 File::~File() {
-    delete this->parent;
+    delete this->root;
 }
