@@ -2,26 +2,27 @@
 #include "../Console/Console.h"
 #include "../Parser/Parser.h"
 
-#include "../Globals.h"
+#include "../Utils/Globals.h"
+#include "../Utils/Exception.h"
 
 using namespace Globals;
 
 bool FileManager::open(String path) {
     if (this->isOpen) {
-        Console::writeLine("A file is already open, close it first before opening another.");
+        Console::writeLine(ALREADY_OPEN);
         return false;
     }
 
     bool valid = this->file.setPath(path);
     if (!valid) {
-        Console::writeLine("Invalid file path, please try again.");
+        Console::writeLine(INVALID_PATH);
         return true;
     }
 
     this->file.parse();
     this->isOpen = true;
 
-    Console::writeLine(String("Successfully opened file: ") + path);
+    Console::writeLine(OPENED_FILE + path);
     return true;
 }
 
@@ -30,11 +31,11 @@ FileManager::FileManager() : isOpen(false) {}
 bool FileManager::close() {
     if (this->isOpen) {
         this->isOpen = false;
-        Console::writeLine(String("File closed: ") + this->file.getPath());
+        Console::writeLine(CLOSED_FILE + this->file.getPath());
         return true;
     }
 
-    Console::writeLine("You cannot close when you haven't opened a file.");
+    Console::writeLine(CANNOT_CLOSE);
     return false;
 }
 
@@ -48,12 +49,12 @@ bool FileManager::save() {
         file << parser.nodeTreeToString(this->file.getParent());
         file.close();
 
-        Console::writeLine(String("File saved: ") + this->file.getPath());
+        Console::writeLine(SAVED_FILE + this->file.getPath());
         this->close();
         return true;
     }
 
-    Console::writeLine("You cannot save when you haven't opened a file.");
+    Console::writeLine(CANNOT_SAVE);
     return false;
 }
 
@@ -68,7 +69,7 @@ File &FileManager::getFile() {
 
     //Throw error
     //What to return as default??
-    throw std::logic_error("No file opened");
+    throw Exception(NO_FILE);
 }
 
 bool FileManager::print() {
@@ -76,7 +77,7 @@ bool FileManager::print() {
         Console::writeLine(this->file.getParent()->toString());
         return true;
     } else {
-        Console::writeLine("You cannot print when you haven't opened a file");
+        Console::writeLine(CANNOT_PRINT);
         return false;
     }
 }

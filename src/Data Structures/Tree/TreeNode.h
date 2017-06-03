@@ -17,7 +17,7 @@ public:
     /** Methods **/
     TreeNode *getParent() const;
 
-    List<TreeNode *> getChildren() const;
+    List<TreeNode *> &getChildren();
 
     void setParent(TreeNode *parent);
 

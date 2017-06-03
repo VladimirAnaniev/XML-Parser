@@ -1,7 +1,7 @@
-#include <cstring>
 #include "Dispatcher.h"
 
-#include "../Globals.h"
+#include "../Utils/Globals.h"
+#include "../Utils/Exception.h"
 
 using namespace Globals;
 
@@ -9,58 +9,122 @@ bool Dispatcher::dispatch(Command command) {
     List<String> args = command.getArguments();
 
     if (command == OPEN) {
-        return fileManager.open(args[0]);
+        fileManager.open(args[0]);
     } else if (command == CLOSE) {
-        return fileManager.close();
+        fileManager.close();
     } else if (command == SAVE) {
-        return fileManager.save();
+        fileManager.save();
     } else if (command == SAVE_AS) {
-        return fileManager.saveAs(args[0]);
+        fileManager.saveAs(args[0]);
     } else if (command == PRINT) {
-        return fileManager.print();
+        fileManager.print();
     } else if (command == SELECT) {
-        return Dispatcher::select(args[0], args[1]);
-    }else if (command == SET) {
-        return Dispatcher::set(args[0], args[1], args[2]);
-    } else {
+        Dispatcher::select(args[0], args[1]);
+    } else if (command == SET) {
+        Dispatcher::set(args[0], args[1], args[2]);
+    } else if (command == CHILD) {
+        Dispatcher::child(args[0], (int) args[1]);
+    } else if (command == CHILDREN) {
+        Dispatcher::children(args[0]);
+    } else if (command == TEXT) {
+        Dispatcher::text(args[0]);
+    } else if (command == DELETE) {
+        Dispatcher::del(args[0], args[1]);
+    } else if (command == END) {
         return false;
+    } else {
+        Console::writeLine(INVALID_COMMAND);
     }
+
+    return true;
 }
 
-bool Dispatcher::select(String id, String key) {
+XML_Node *findNodeById(String id) {
     try {
-        XML_Node *node = fileManager.getFile().getParent()->findById(id);
-
-        List<Argument> nodeArgs = node->getArguments();
-
-        for(int i=0;i<nodeArgs.getSize();i++) {
-            if(nodeArgs[i].getKey() == key) {
-                Console::writeLine(nodeArgs[i]);
-                return true;
-            }
-        }
-    } catch (std::logic_error ex) {
+        return fileManager.getFile().getParent()->findById(id);
+    } catch (Exception ex) {
         Console::writeLine(ex.what());
     }
-
-    Console::writeLine("No such argument exists");
-    return false;
+    return nullptr;
 }
 
-bool Dispatcher::set(String id, String key, String value) {
-    XML_Node *node = fileManager.getFile().getParent()->findById(id);
+void Dispatcher::select(String id, String key) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
 
-    List<Argument> nodeArgs = node->getArguments();
+    List<Argument> &nodeArgs = node->getArguments();
 
-    for(int i=0;i<nodeArgs.getSize();i++) {
-        if(nodeArgs[i].getKey() == key) {
-            nodeArgs[i].setValue(value);
+    for (int i = 0; i < nodeArgs.getSize(); i++) {
+        if (nodeArgs[i].getKey() == key) {
             Console::writeLine(nodeArgs[i]);
-            return true;
+            return;
         }
     }
 
-    node->addArgument(Argument(key, value));
-    Console::writeLine(nodeArgs[nodeArgs.getSize()-1]);
-    return true;
+    Console::writeLine(NO_SUCH_ARGUMENT);
+}
+
+void Dispatcher::set(String id, String key, String value) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
+
+    List<Argument> &nodeArgs = node->getArguments();
+
+    for (int i = 0; i < nodeArgs.getSize(); i++) {
+        if (nodeArgs[i].getKey() == key) {
+            nodeArgs[i].setValue(value);
+            Console::writeLine(nodeArgs[i]);
+            return;
+        }
+    }
+
+    nodeArgs.push(Argument(key, value));
+    Console::writeLine(nodeArgs[nodeArgs.getSize() -1]);
+}
+
+void Dispatcher::child(String id, int index) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
+
+    if(node->getChildren().getSize() <= index) {
+        Console::writeLine(NO_SUCH_CHILD);
+    } else {
+        Console::writeLine(((XML_Node *)node->getChildren()[index])->toString());
+    }
+}
+
+void Dispatcher::children(String id) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
+
+    for(int i=0;i<node->getChildren().getSize();i++) {
+        Console::writeLine(((XML_Node *)node->getChildren()[i])->toString());
+    }
+
+    if(node->getChildren().getSize() < 1) {
+        Console::writeLine(NO_CHILDREN);
+    }
+}
+
+void Dispatcher::text(String id) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
+
+    Console::writeLine(node->getContent());
+}
+
+void Dispatcher::del(String id, String key) {
+    XML_Node *node = findNodeById(id);
+    if(!node) return;
+
+    List<Argument> &args = node->getArguments();
+
+    for(int i=0;i<args.getSize();i++) {
+        if(args[i].getKey() == key) {
+            Console::writeLine(DELETED + args.deleteAt(i));
+            return;
+        }
+    }
+
+    Console::writeLine(NO_SUCH_ARGUMENT);
 }

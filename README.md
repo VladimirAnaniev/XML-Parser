@@ -37,7 +37,15 @@ Saving a file puts the node tree currently in memory in a file as a formatted xm
 - Outputs the xml file as a formatted string on the console.
 
 #### Editing the xml
-TODO
+``select [id] [key]``
+- Outputs the value of the **[key]** argument of the element with **[id]**
+
+``set [id] [key] [value]``
+- Sets the **[key]** argument of the element with **[id]** to **[value]**.
+If **[key]** exists, value gets changed, else a new pair is created.
+
+``child [id] [n]``
+- Outputs the **n**-th child of the element with **[id]**
 
 ## Documentation
 TODO

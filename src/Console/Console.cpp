@@ -5,9 +5,8 @@
 
 void Console::listen() {
     bool loop = true;
-    while(true) {
+    while(loop) {
         loop = Console::readLine();
-        if(!loop) Console::invalidCommand(); //TODO: REFACTOR THIS
     }
 }
 

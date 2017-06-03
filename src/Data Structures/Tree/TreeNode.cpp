@@ -4,7 +4,7 @@ TreeNode *TreeNode::getParent() const {
     return this->parent;
 }
 
-List<TreeNode *> TreeNode::getChildren() const {
+List<TreeNode *> &TreeNode::getChildren() {
     return this->children;
 }
 

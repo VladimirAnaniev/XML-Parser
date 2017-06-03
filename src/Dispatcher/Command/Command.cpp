@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Command.h"
 
-#include "../../Globals.h"
+#include "../../Utils/Globals.h"
 
 using namespace Globals;
 

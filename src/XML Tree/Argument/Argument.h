@@ -3,9 +3,9 @@
 
 #include "../../Data Structures/String/String.h"
 #include "../../Interfaces/Pair.h"
-#include "../../Interfaces/Stringifyable.h"
+#include "../../Interfaces/Stringifiable.h"
 
-class Argument : public Pair<String, String>, public Stringifyable {
+class Argument : public Pair<String, String>, public Stringifiable {
     String key;
     String value;
 

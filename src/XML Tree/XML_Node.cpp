@@ -10,7 +10,7 @@ void XML_Node::addArgument(Argument arg) {
     this->data.arguments.push(arg);
 }
 
-List<Argument> XML_Node::getArguments() const {
+List<Argument> &XML_Node::getArguments() {
     return this->data.arguments;
 }
 

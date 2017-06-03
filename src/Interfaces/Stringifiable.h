@@ -3,13 +3,13 @@
 
 #include "../Data Structures/String/String.h"
 
-class Stringifyable {
+class Stringifiable {
 public:
     virtual String toString() = 0;
 
-    operator String() { return this->toString(); }
+    virtual operator String() { return this->toString(); }
 
-    virtual ~Stringifyable() {}
+    virtual ~Stringifiable() {}
 };
 
 #endif //XML_PARSER_STRINGIFYABLE_H

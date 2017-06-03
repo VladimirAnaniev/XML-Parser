@@ -89,9 +89,6 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Array/List.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/Array/List.tpp">
-			<Option target="XML_Parser"/>
-		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Data Structures/String/String.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
@@ -128,19 +125,22 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/FileManager/FileManager.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Globals.h">
-			<Option target="XML_Parser"/>
-		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Pair.h">
 			<Option target="XML_Parser"/>
 		</Unit>
-		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Stringifyable.h">
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Stringifiable.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Utils/Exception.h">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Utils/Globals.h">
 			<Option target="XML_Parser"/>
 		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/XML Tree/Argument/Argument.cpp">
