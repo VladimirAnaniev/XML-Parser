@@ -9,11 +9,11 @@ String Command::getAction() const {
     return this->action;
 }
 
-Array<String> Command::getArguments() const {
+List<String> Command::getArguments() const {
     return this->arguments;
 }
 
-Command::Command(Array<String> input) {
+Command::Command(List<String> input) {
     this->action = input.deleteAt(0);
     if (this->action == SAVE && input[0] == AS) {
 

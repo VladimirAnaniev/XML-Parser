@@ -2,7 +2,7 @@
 #define XML_PARSER_STRING_H
 
 #include <fstream>
-#include "../Array/Array.h"
+#include "../Array/List.h"
 
 class String {
     char *str;
@@ -41,10 +41,10 @@ public:
     void set(const char *str);
 
     //Split the string when given char is seen
-    Array<String> split(char c = ' ') const;
+    List<String> split(char c = ' ') const;
 
     //Split the string when any of the given chars is seen
-    Array<String> split(Array<char> delims) const;
+    List<String> split(List<char> delims) const;
 
     //Get a substring
     String substring(int start, int end) const;
@@ -77,7 +77,7 @@ public:
     void prepend(String str);
 
     //Return an array of all occurrences of a given character
-    Array<int> occurrencesOf(char c) const;
+    List<int> occurrencesOf(char c) const;
 
     //Generates a random string with given length
     static String generateRandom(int len);

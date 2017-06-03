@@ -1,32 +1,32 @@
 #include <iostream>
-#include "Array.h"
+#include "List.h"
 
 
 template<typename T>
-Array<T>::Array(int size): capacity(size), size(0) {
+List<T>::List(int size): capacity(size), size(0) {
     this->arr = new T[size];
 }
 
 template<typename T>
-Array<T>::~Array() {
+List<T>::~List() {
     delete[] this->arr;
 }
 
 template<typename T>
-Array<T>::Array(const Array &arr) : capacity(arr.capacity), size(arr.size) {
+List<T>::List(const List &arr) : capacity(arr.capacity), size(arr.size) {
     this->arr = new T[arr.capacity];
     this->copy(arr.arr, arr.size);
 }
 
 template<typename T>
-void Array<T>::copy(T *arr, int length) {
+void List<T>::copy(T *arr, int length) {
     for (int i = 0; i < length; i++) {
         this->arr[i] = arr[i];
     }
 }
 
 template<typename T>
-void Array<T>::resize(int newSize) {
+void List<T>::resize(int newSize) {
     T *old = this->arr;
     this->arr = new T[newSize];
     this->copy(old, this->size);
@@ -34,7 +34,7 @@ void Array<T>::resize(int newSize) {
 }
 
 template<typename T>
-Array<T> &Array<T>::operator=(const Array &arr) {
+List<T> &List<T>::operator=(const List &arr) {
     this->capacity = arr.capacity;
     this->size = arr.size;
     this->arr = new T[arr.capacity];
@@ -44,22 +44,22 @@ Array<T> &Array<T>::operator=(const Array &arr) {
 }
 
 template<typename T>
-T &Array<T>::operator[](int index) {
+T &List<T>::operator[](int index) {
     return this->get(index);
 }
 
 template<typename T>
-int Array<T>::getSize() const {
+int List<T>::getSize() const {
     return this->size;
 }
 
 template<typename T>
-int Array<T>::getCapacity() const {
+int List<T>::getCapacity() const {
     return this->capacity;
 }
 
 template<typename T>
-void Array<T>::insert(int index, T elem) {
+void List<T>::insert(int index, T elem) {
     if (this->size == this->capacity) {
         this->resize(this->capacity * 2); //double the size if array is full
     }
@@ -73,33 +73,33 @@ void Array<T>::insert(int index, T elem) {
 }
 
 template<typename T>
-void Array<T>::push(T elem) {
+void List<T>::push(T elem) {
     this->insert(this->size, elem);
 }
 
 template<typename T>
-void Array<T>::prepend(T elem) {
+void List<T>::prepend(T elem) {
     this->insert(0, elem);
 }
 
 template<typename T>
-T &Array<T>::get(int index) const {
+T &List<T>::get(int index) const {
     if (index < 0 || index >= capacity) {
-        throw std::invalid_argument("Calling Array.get() with an invalid index");
+        throw std::invalid_argument("Calling List.get() with an invalid index");
     }
 
     return this->arr[index];
 }
 
 template<typename T>
-bool Array<T>::isEmpty() const {
+bool List<T>::isEmpty() const {
     return this->size == 0;
 }
 
 template<typename T>
-T Array<T>::deleteAt(int index) {
+T List<T>::deleteAt(int index) {
     if (index < 0 || index >= capacity) {
-        throw std::invalid_argument("Calling Array.deleteAt() with an invalid index");
+        throw std::invalid_argument("Calling List.deleteAt() with an invalid index");
     }
 
     T toReturn = this->arr[index];
@@ -117,12 +117,12 @@ T Array<T>::deleteAt(int index) {
 }
 
 template<typename T>
-T Array<T>::pop() {
+T List<T>::pop() {
     return this->deleteAt(this->size - 1);
 }
 
 template<typename T>
-int Array<T>::indexOf(T elem) const {
+int List<T>::indexOf(T elem) const {
     for (int i = 0; i < this->size; i++) {
         if (this->arr[i] == elem) return i;
     }

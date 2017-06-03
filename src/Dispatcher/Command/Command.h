@@ -5,18 +5,18 @@
 
 class Command {
     String action;
-    Array<String> arguments;
-    Array<String> optionals;
+    List<String> arguments;
+    List<String> optionals;
 public:
     /** Constructors **/
-    Command(Array<String> input);
+    Command(List<String> input);
 
     /** Methods **/
     //Returns the action being requested
     String getAction() const;
 
     //Returns the arguments of the command if such exist
-    Array<String> getArguments() const;
+    List<String> getArguments() const;
 
     /** Operators **/
     bool operator==(String action) const;

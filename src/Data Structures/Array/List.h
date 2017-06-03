@@ -2,7 +2,7 @@
 #define XML_PARSER_ARRAY_H
 
 template<typename T>
-class Array {
+class List {
     T *arr;
     int size;
     int capacity;
@@ -16,13 +16,13 @@ class Array {
 public:
     /** Constructors **/
     //Default
-    Array(int size = 16);
+    List(int size = 16);
 
-//    //Converts a pointer array to Array
-//    Array(T *arr);
+//    //Converts a pointer array to List
+//    List(T *arr);
 
     //Copy constructor
-    Array(const Array &arr);
+    List(const List &arr);
 
     /** Methods **/
     //Returns number of elements currently in the array
@@ -63,7 +63,7 @@ public:
      **/
 
     /** Operators **/
-    Array &operator=(const Array &arr);
+    List &operator=(const List &arr);
 
     //Accessor for elements
     T &operator[](int index);
@@ -72,9 +72,9 @@ public:
     operator T *() const { return this->arr; };
 
     ////Destructor
-    ~Array();
+    ~List();
 };
 
-#include "Array.tpp"
+#include "List.tpp"
 
 #endif //XML_PARSER_ARRAY_H

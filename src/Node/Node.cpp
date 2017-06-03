@@ -14,7 +14,7 @@ Node::Node(const Node &node) {
     this->copy(node);
 }
 
-Array<Node *> Node::getChildren() const {
+List<Node *> Node::getChildren() const {
     return this->children;
 }
 
@@ -41,7 +41,7 @@ void Node::addChild(Node *child) {
     child->changeParent(this);
 }
 
-Array<Argument> Node::getArguments() const {
+List<Argument> Node::getArguments() const {
     return this->data.args;
 }
 
@@ -81,7 +81,7 @@ void Node::copy(const Node &node) {
     this->setChildren(node.children);
 }
 
-void Node::setChildren(Array<Node *> children) {
+void Node::setChildren(List<Node *> children) {
     this->children = children;
 
     for (int i = 0; i < children.getSize(); i++) {

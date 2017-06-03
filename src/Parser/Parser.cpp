@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Parser.h"
 
-void Parser::validate(Node *nodeTree, Array<String> &ids) {
+void Parser::validate(Node *nodeTree, List<String> &ids) {
     if (ids.indexOf(nodeTree->getId()) >= 0 || nodeTree->getId() == String("")) {
         do {
             nodeTree->setId(Parser::generateUniqueId());
@@ -10,7 +10,7 @@ void Parser::validate(Node *nodeTree, Array<String> &ids) {
 
     ids.push(nodeTree->getId());
 
-    Array<Node *> children = nodeTree->getChildren();
+    List<Node *> children = nodeTree->getChildren();
 
     for (int i = 0; i < children.getSize(); i++) {
         Parser::validate(children[i], ids);
@@ -30,7 +30,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
     //All elements have a tag and an id
     result += offset + "<" + node->getTag() + " id=\"" + node->getId() + "\"";
 
-    Array<Argument> args = node->getArguments();
+    List<Argument> args = node->getArguments();
     for (int i = 0; i < args.getSize(); i++) {
         //Add all arguments in format [key]="[value]"
         Argument argument = args[i];
@@ -41,7 +41,7 @@ String Parser::nodeToStringRecursive(Node *node, int depth) {
     if (node->getChildren().getSize() || node->getContent().getLength()) {
         result += ">\n";
 
-        Array<Node *> children = node->getChildren();
+        List<Node *> children = node->getChildren();
         for (int i = 0; i < children.getSize(); i++) {
             // Call recursively for each node's children
             result += Parser::nodeToStringRecursive(children[i], depth + 1);
@@ -63,7 +63,7 @@ Node *Parser::stringToNodeTree(String str) {
 
     //After parsing validate the created node tree
     //=> create unique ids where necessary
-    Array<String> ids;
+    List<String> ids;
     Parser::validate(parent, ids);
 
     return parent;
@@ -93,7 +93,7 @@ Node *Parser::stringToNodeRecursive(String &str) {
             isOpened = true;
         }
 
-        Array<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
+        List<String> thisParts = thisNode.split(' '); //Split by intervals for access to all props
         String tag = thisParts.deleteAt(0); //Tag is always first
 
         /**Set node's parameters **/
@@ -101,7 +101,7 @@ Node *Parser::stringToNodeRecursive(String &str) {
 
         for (int i = 0; i < thisParts.getSize(); i++) {
             //For each pair of arguments, split by '=' and add to args array
-            Array<String> pair = thisParts[i].split('=');
+            List<String> pair = thisParts[i].split('=');
             if (pair[1].beginsWith("\"") && pair[1].endsWith("\""))
                 pair[1] = pair[1].substring(1, pair[1].getLength() - 1);
 

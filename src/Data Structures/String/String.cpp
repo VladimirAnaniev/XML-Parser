@@ -92,8 +92,8 @@ bool String::operator==(const String &str) const {
     return strcmp(this->str, str.str) == 0;
 }
 
-Array<String> String::split(char c) const {
-    Array<String> arr;
+List<String> String::split(char c) const {
+    List<String> arr;
     int lastIndex = 0;
     String str = this->clearSpaces();
 
@@ -116,8 +116,8 @@ String String::substring(int start, int end) const {
     return String(newStr);
 }
 
-Array<String> String::split(Array<char> delims) const {
-    Array<String> arr;
+List<String> String::split(List<char> delims) const {
+    List<String> arr;
     int lastIndex = 0;
     String str = this->clearSpaces();
 
@@ -200,7 +200,7 @@ int String::indexOf(char c) const {
 }
 
 int String::indexOf(String str) const {
-    Array<int> indexes = this->occurrencesOf(str[0]);
+    List<int> indexes = this->occurrencesOf(str[0]);
 
     for (int o = 0; o < indexes.getSize(); o++) {
         bool flag = true;
@@ -231,8 +231,8 @@ void String::prepend(String str) {
     this->set(str + this->get());
 }
 
-Array<int> String::occurrencesOf(char c) const {
-    Array<int> result;
+List<int> String::occurrencesOf(char c) const {
+    List<int> result;
 
     for (int i = 0; i < this->length; i++) {
         if (this->operator[](i) == c) result.push(i);

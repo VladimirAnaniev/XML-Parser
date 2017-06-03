@@ -17,7 +17,7 @@ class Parser {
 public:
     /** Methods **/
     //Checks if a given nodeTree is valid XML and places unique Ids
-    static void validate(Node *nodeTree, Array<String> &ids);
+    static void validate(Node *nodeTree, List<String> &ids);
 
     //Converts a string to a node tree
     static Node *stringToNodeTree(String str);

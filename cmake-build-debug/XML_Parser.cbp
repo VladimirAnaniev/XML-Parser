@@ -92,6 +92,12 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/String/String.h">
 			<Option target="XML_Parser"/>
 		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Tree/Tree.cpp">
+			<Option target="XML_Parser"/>
+		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Base Classes/Tree/Tree.h">
+			<Option target="XML_Parser"/>
+		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Console/Console.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>

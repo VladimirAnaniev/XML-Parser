@@ -3,25 +3,25 @@
 
 #include "Argument/Argument.h"
 #include "../Base Classes/String/String.h"
-#include "../Base Classes/Array/Array.h"
+#include "../Base Classes/Array/List.h"
 
 struct NodeData {
     String tag;
     String id;
-    Array<Argument> args;
+    List<Argument> args;
     String content;
 };
 
 class Node {
     NodeData data;
-    Array<Node *> children;
+    List<Node *> children;
     Node *parent;
 
     // Copy helper
     void copy(const Node& node);
 
     // Set children
-    void setChildren(Array<Node *> children);
+    void setChildren(List<Node *> children);
 
     //Destroy this and its children recursively
     void destroy();
@@ -63,10 +63,10 @@ public:
     String getTag() const;
 
     //Get this node's children
-    Array<Node *> getChildren() const;
+    List<Node *> getChildren() const;
 
     // returns this node's arguments
-    Array<Argument> getArguments() const;
+    List<Argument> getArguments() const;
 
     //Returns a pointer to this node's parent
     const Node *getParent() const;

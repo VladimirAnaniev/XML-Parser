@@ -17,7 +17,7 @@ bool Console::readLine() {
 
     String str = input;
 
-    Array<String> parts = str.split();
+    List<String> parts = str.split();
 
     Command c(parts);
 
