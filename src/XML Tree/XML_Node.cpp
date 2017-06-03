@@ -1,4 +1,5 @@
 #include "XML_Node.h"
+#include "../Parser/Parser.h"
 
 
 String XML_Node::getTag() const {
@@ -35,5 +36,22 @@ void XML_Node::setContent(String content) {
 
 String XML_Node::getContent() const {
     return this->data.content;
+}
+
+XML_Node* XML_Node::findById(String id) {
+    if(this->getId() == id) return this;
+
+    List<TreeNode *> children = this->getChildren();
+
+    for(int i=0;i<children.getSize(); i++) {
+        XML_Node *result = ((XML_Node *) children[i])->findById(id);
+        if(result != nullptr) return result;
+    }
+
+    return nullptr;
+}
+
+String XML_Node::toString() {
+    return Parser::nodeTreeToString(this);
 }
 

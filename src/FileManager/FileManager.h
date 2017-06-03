@@ -27,8 +27,8 @@ public:
     //Print the contents of the file on the console, formatted
     bool print();
 
-//    // Returns the opened file
-//    File &getFile();
+    // Returns the opened file
+    File &getFile();
 };
 
 

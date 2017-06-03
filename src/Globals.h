@@ -19,6 +19,8 @@ namespace Globals {
     static const String AS = "as";
     static const String SAVE_AS = "save as";
     static const String PRINT = "print";
+    static const String SELECT = "select";
+    static const String SET = "set";
 
     static FileManager fileManager;
 

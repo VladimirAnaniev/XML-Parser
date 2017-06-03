@@ -5,6 +5,11 @@
 #include "Command/Command.h"
 
 class Dispatcher {
+
+    static bool select(String id, String key);
+
+    static bool set(String id, String key, String value);
+
 public:
     /** Methods **/
     //Dispatch a command

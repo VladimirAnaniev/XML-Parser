@@ -3,8 +3,9 @@
 
 #include "../../Data Structures/String/String.h"
 #include "../../Interfaces/Pair.h"
+#include "../../Interfaces/Stringifyable.h"
 
-class Argument : public Pair<String, String> {
+class Argument : public Pair<String, String>, public Stringifyable {
     String key;
     String value;
 
@@ -20,6 +21,8 @@ public:
     void setKey(String key);
 
     void setValue(String value);
+
+    String toString() override;
 };
 
 

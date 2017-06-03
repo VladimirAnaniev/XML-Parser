@@ -17,7 +17,7 @@ struct Data {
     }
 };
 
-class XML_Node : public TreeNode {
+class XML_Node : public TreeNode, public Stringifyable {
     Data data;
 
 public:
@@ -51,6 +51,9 @@ public:
     // returns this node's arguments
     List<Argument> getArguments() const;
 
+    XML_Node *findById(String id);
+
+    String toString() override;
 };
 
 

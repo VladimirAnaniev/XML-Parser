@@ -25,10 +25,6 @@ public:
 
     TreeNode *removeChild(TreeNode *child);
 
-    TreeNode *depthSearch(TreeNode *node);
-
-    TreeNode *breadthSearch(TreeNode *node);
-
     /** Operators **/
     TreeNode &operator=(const TreeNode &treeNode);
 

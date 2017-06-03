@@ -17,3 +17,7 @@ void Argument::setValue(String value) {
 }
 
 Argument::Argument(String key, String value) : key(key), value(value) {}
+
+String Argument::toString() {
+    return this->getKey()+"=\""+this->getValue()+"\" ";
+}

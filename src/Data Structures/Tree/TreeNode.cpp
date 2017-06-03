@@ -47,11 +47,3 @@ TreeNode &TreeNode::operator=(const TreeNode &treeNode) {
     this->children = treeNode.children;
     return *this;
 }
-
-TreeNode* TreeNode::depthSearch(TreeNode *node) {
-//TODO
-}
-
-TreeNode* TreeNode::breadthSearch(TreeNode *node) {
-//TODO
-}

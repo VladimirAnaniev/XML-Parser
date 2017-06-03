@@ -134,6 +134,9 @@
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Pair.h">
 			<Option target="XML_Parser"/>
 		</Unit>
+		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Interfaces/Stringifyable.h">
+			<Option target="XML_Parser"/>
+		</Unit>
 		<Unit filename="/home/vladimir/Programming/XML-Parser/src/Parser/Parser.cpp">
 			<Option target="XML_Parser"/>
 		</Unit>

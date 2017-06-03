@@ -63,16 +63,17 @@ bool FileManager::saveAs(String path) {
     return this->save();
 }
 
-//File &FileManager::getFile() {
-//    if(this->isOpen) return this->file;
-//
-//    //Throw error
-//    //What to return as default??
-//}
+File &FileManager::getFile() {
+    if(this->isOpen) return this->file;
+
+    //Throw error
+    //What to return as default??
+    throw std::logic_error("No file opened");
+}
 
 bool FileManager::print() {
     if (this->isOpen) {
-        Console::writeLine(Parser::nodeTreeToString(this->file.getParent()));
+        Console::writeLine(this->file.getParent()->toString());
         return true;
     } else {
         Console::writeLine("You cannot print when you haven't opened a file");
