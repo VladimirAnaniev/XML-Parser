@@ -8,15 +8,13 @@ Command line interface for parsing and editing XML files
 - [Documentation](#documentation)
 
 ## Installation
+### Linux
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
-2. Navigate to **cmake-build-debug** directory
-3. Execute **XML_Parser**
+2. TODO
 
-```````````
-$ git clone https://github.com/VladimirAnaniev/XML-Parser.git
-$ cd XML_Parser/cmake-build-debug
-$ ./XML_Parser
-```````````
+### Windows
+1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
+2. TODO
 
 ## Usage
 #### Open a file
