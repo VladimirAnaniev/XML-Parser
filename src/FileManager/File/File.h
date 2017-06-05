@@ -17,7 +17,7 @@ class File {
 
 public:
     ////Constructor
-    File();
+    File(String path);
 
     //Copy
     File(const File &file);

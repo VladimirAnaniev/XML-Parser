@@ -6,22 +6,11 @@
 #include "../../Interfaces/Stringifiable.h"
 
 class Argument : public Pair<String, String>, public Stringifiable {
-    String key;
-    String value;
-
 public:
     //// Constructor
     Argument(String key = "", String value = "");
 
     /** Methods **/
-    String getKey() const;
-
-    String getValue() const;
-
-    void setKey(String key);
-
-    void setValue(String value);
-
     String toString() override;
 };
 

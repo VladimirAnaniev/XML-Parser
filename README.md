@@ -30,8 +30,6 @@ You can only close a file if you have opened one.
 - Closes the file without saving changes
 
 #### Saving
-Saving a file puts the node tree currently in memory in a file as a formatted xml string. Then the file is closed.
-
 ``save``
 - Saves the xml file in the same file it was read from.
 

@@ -4,31 +4,29 @@
 #include "File/File.h"
 
 class FileManager {
-    bool isOpen;
-    File file;
+    static File *file;
 
+    //Private Constructor
+    FileManager() {}
 public:
-    /** Constructors **/
-    FileManager();
-
     /** Methods **/
     //Open a file and read its data
-    bool open(String path);
+    static bool open(String path);
 
     //Close the file without saving
-    bool close();
+    static bool close();
 
     //Save the file at its current path
-    bool save();
+    static bool save();
 
     //Save the file at a new path
-    bool saveAs(String path);
+    static bool saveAs(String path);
 
     //Print the contents of the file on the console, formatted
-    bool print();
+    static bool print();
 
     // Returns the opened file
-    File &getFile();
+    static File &getFile();
 };
 
 

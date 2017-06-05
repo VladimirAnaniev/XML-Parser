@@ -4,6 +4,8 @@
 #include "../XML Tree/XML_Node.h"
 
 class Parser {
+    //Private Constructor
+    Parser() {}
 
     //Recursive helper function for parsing XML Tree Trees to Strings
     static String nodeToStringRecursive(XML_Node *node, int depth);

@@ -2,6 +2,8 @@
 
 #include "../Utils/Globals.h"
 #include "../Utils/Exception.h"
+#include "../FileManager/FileManager.h"
+#include "../Console/Console.h"
 
 using namespace Globals;
 
@@ -9,15 +11,15 @@ bool Dispatcher::dispatch(Command command) {
     List<String> args = command.getArguments();
 
     if (command == OPEN) {
-        fileManager.open(args[0]);
+        FileManager::open(args[0]);
     } else if (command == CLOSE) {
-        fileManager.close();
+        FileManager::close();
     } else if (command == SAVE) {
-        fileManager.save();
+        FileManager::save();
     } else if (command == SAVE_AS) {
-        fileManager.saveAs(args[0]);
+        FileManager::saveAs(args[0]);
     } else if (command == PRINT) {
-        fileManager.print();
+        FileManager::print();
     } else if (command == SELECT) {
         Dispatcher::select(args[0], args[1]);
     } else if (command == SET) {
@@ -30,7 +32,7 @@ bool Dispatcher::dispatch(Command command) {
         Dispatcher::text(args[0]);
     } else if (command == DELETE) {
         Dispatcher::del(args[0], args[1]);
-    } else if (command == END) {
+    } else if (command == QUIT) {
         return false;
     } else {
         Console::writeLine(INVALID_COMMAND);
@@ -41,7 +43,7 @@ bool Dispatcher::dispatch(Command command) {
 
 XML_Node *findNodeById(String id) {
     try {
-        return fileManager.getFile().getParent()->findById(id);
+        return FileManager::getFile().getParent()->findById(id);
     } catch (Exception ex) {
         Console::writeLine(ex.what());
     }

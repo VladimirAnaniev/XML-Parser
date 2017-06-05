@@ -2,17 +2,13 @@
 #define XML_PARSER_GLOBALS
 
 #include "../Data Structures/String/String.h"
-#include "../Console/Console.h"
-#include "../Dispatcher/Dispatcher.h"
-#include "../Parser/Parser.h"
 
 namespace Globals {
     // Actions
     static const String OPEN = "open";
     static const String CLOSE = "close";
     static const String SAVE = "save";
-    static const String AS = "as";
-    static const String SAVE_AS = "save as";
+    static const String SAVE_AS = "saveas";
     static const String PRINT = "print";
     static const String SELECT = "select";
     static const String SET = "set";
@@ -20,8 +16,9 @@ namespace Globals {
     static const String CHILD = "child";
     static const String TEXT = "text";
     static const String DELETE = "delete";
+    static const String REMOVE = "remove";
     static const String NEW_CHILD = "newchild";
-    static const String END = "end";
+    static const String QUIT = "quit";
 
     //Feedback
     static const String INVALID_COMMAND = "Invalid command.";
@@ -38,9 +35,6 @@ namespace Globals {
     static const String NO_SUCH_CHILD = "No such child exists.";
     static const String NO_CHILDREN = "This element has no children.";
     static const String DELETED = "Deleted: ";
-
-    //Global singletons
-    static FileManager fileManager;
 }
 
 #endif //XML_PARSER_GLOBALS

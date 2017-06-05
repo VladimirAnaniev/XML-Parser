@@ -4,7 +4,10 @@
 #include "Command/Command.h"
 
 class Dispatcher {
+    //Private constructor
+    Dispatcher() {}
 
+    /** Methods **/ //TODO: Transition them closer to the actual XML Tree
     static void select(String id, String key);
 
     static void set(String id, String key, String value);

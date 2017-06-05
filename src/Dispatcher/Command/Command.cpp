@@ -15,11 +15,6 @@ List<String> Command::getArguments() const {
 
 Command::Command(List<String> input) {
     this->action = input.deleteAt(0);
-    if (this->action == SAVE && input[0] == AS) {
-
-        this->action += " ";
-        this->action += input.deleteAt(0);
-    }
 
     this->arguments = input;
 

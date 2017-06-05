@@ -5,8 +5,8 @@
 
 int main() {
     srand((unsigned int)time(0));
-    Console console;
-    console.listen();
+    
+    Console::listen();
 
     return 0;
 }

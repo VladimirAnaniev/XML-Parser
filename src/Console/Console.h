@@ -4,6 +4,9 @@
 #include "../FileManager/FileManager.h"
 
 class Console {
+    
+    Console() {}
+
     //reads from console, returns executeCommand(parseCommand(input));
     static bool readLine();
 

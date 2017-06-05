@@ -1,5 +1,9 @@
 #include "File.h"
 #include "../../Parser/Parser.h"
+#include "../../Utils/Exception.h"
+#include "../../Utils/Globals.h"
+
+using namespace Globals;
 
 bool File::setPath(String path) {
     this->path.set(path);
@@ -19,14 +23,12 @@ String File::getPath() const {
 }
 
 void File::parse() {
-    Parser parser;
-
     std::ifstream file(this->path);
 
     file >> this->data;
 
     if(this->root) delete this->root;
-    this->root = parser.stringToNodeTree(this->data);
+    this->root = Parser::stringToNodeTree(this->data);
 
     file.close();
 }
@@ -37,10 +39,17 @@ XML_Node *File::getParent() const {
 
 bool File::isValid() const {
     std::ifstream file(this->path);
-    return (file) ? true : false;
+    if(file) {
+        return true;
+    } else {
+        throw Exception(INVALID_PATH);
+    }
 }
 
-File::File() : root(nullptr) {}
+File::File(String path) : root(nullptr) {
+    this->setPath(path);
+    this->parse();
+}
 
 File::File(const File &file): path(file.path), root(nullptr) {
     this->parse();

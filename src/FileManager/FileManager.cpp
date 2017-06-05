@@ -1,37 +1,24 @@
 #include "FileManager.h"
 #include "../Console/Console.h"
-#include "../Parser/Parser.h"
-
 #include "../Utils/Globals.h"
+#include "../Parser/Parser.h"
 #include "../Utils/Exception.h"
 
 using namespace Globals;
 
-bool FileManager::open(String path) {
-    if (this->isOpen) {
-        Console::writeLine(ALREADY_OPEN);
-        return false;
-    }
+File *FileManager::file = nullptr;
 
-    bool valid = this->file.setPath(path);
-    if (!valid) {
-        Console::writeLine(INVALID_PATH);
-        return true;
-    }
+File& FileManager::getFile() {
+    if(file) return *file;
 
-    this->file.parse();
-    this->isOpen = true;
-
-    Console::writeLine(OPENED_FILE + path);
-    return true;
+    throw Exception(NO_FILE);
 }
 
-FileManager::FileManager() : isOpen(false) {}
-
 bool FileManager::close() {
-    if (this->isOpen) {
-        this->isOpen = false;
-        Console::writeLine(CLOSED_FILE + this->file.getPath());
+    if(file) {
+        Console::writeLine(CLOSED_FILE + file->getPath());
+        delete file;
+        file = nullptr;
         return true;
     }
 
@@ -39,18 +26,28 @@ bool FileManager::close() {
     return false;
 }
 
+bool FileManager::open(String path) {
+    if(file) {
+        Console::writeLine(ALREADY_OPEN);
+        return false;
+    }
+
+    try {
+        file = new File(path);
+        Console::writeLine(OPENED_FILE + file->getPath());
+        return true;
+    } catch(Exception ex) {
+        Console::writeLine(ex.what());
+        return false;
+    }
+}
 
 bool FileManager::save() {
-    if (this->isOpen) {
-        Parser parser;
-
-        std::ofstream file;
-        file.open(this->file.getPath(), std::ios_base::out | std::ios_base::trunc);
-        file << parser.nodeTreeToString(this->file.getParent());
-        file.close();
-
-        Console::writeLine(SAVED_FILE + this->file.getPath());
-        this->close();
+    if(file) {
+        std::ofstream f(file->getPath());
+        f<<Parser::nodeTreeToString(file->getParent());
+        f.close();
+        Console::writeLine(SAVED_FILE + file->getPath());
         return true;
     }
 
@@ -59,27 +56,22 @@ bool FileManager::save() {
 }
 
 bool FileManager::saveAs(String path) {
-    this->file.setPath(path);
+    if(file) {
+        file->setPath(path);
+        FileManager::save();
+        return true;
+    }
 
-    return this->save();
-}
-
-File &FileManager::getFile() {
-    if(this->isOpen) return this->file;
-
-    //Throw error
-    //What to return as default??
-    throw Exception(NO_FILE);
+    Console::writeLine(CANNOT_SAVE);
+    return false;
 }
 
 bool FileManager::print() {
-    if (this->isOpen) {
-        Console::writeLine(this->file.getParent()->toString());
+    if(file) {
+        Console::writeLine(Parser::nodeTreeToString(file->getParent()));
         return true;
-    } else {
-        Console::writeLine(CANNOT_PRINT);
-        return false;
     }
+
+    Console::writeLine(CANNOT_PRINT);
+    return false;
 }
-
-
