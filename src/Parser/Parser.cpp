@@ -1,5 +1,9 @@
 #include <cstring>
 #include "Parser.h"
+#include "../Utils/Exception.h"
+#include "../Utils/Globals.h"
+
+using namespace Globals;
 
 void Parser::validate(XML_Node *nodeTree, List<String> &ids) {
     if (ids.indexOf(nodeTree->getId()) >= 0 || nodeTree->getId() == String("")) {
@@ -73,7 +77,7 @@ XML_Node *Parser::stringToNodeRecursive(String &str) {
     XML_Node *node = new XML_Node;
     bool isOpened = false;
 
-    str = str.substring(str.indexOf('<'), str.indexOfBackwards('>') + 1);
+    str = str.substring(str.indexOf('<'), str.lastIndexOf('>') + 1);
 
     //Find the index of the end of this node's declaration
     int delimIndex = str.indexOf('>') + 1;
@@ -112,6 +116,7 @@ XML_Node *Parser::stringToNodeRecursive(String &str) {
             }
         }
 
+        /** Set Content or Children **/
         if (isOpened) {
             //Opened, find end and call recursively for its children..
             String closingTag = String("</") + tag + ">";
@@ -120,11 +125,17 @@ XML_Node *Parser::stringToNodeRecursive(String &str) {
             //Set str to the string that remains so that the recursion can continue
             str = rest.after(rest.indexOf(String(closingTag)) + closingTag.getLength());
 
-            while (inside.getLength()) { //If inside is empty, there are no more children to add
-                //Pass the inside as a parameter for the 'child' node
-                //After parsing it will change that to the remainder after it's closing tag
-                // that's why str was set to the remainder of the input string earlier
-                node->addChild(Parser::stringToNodeRecursive(inside));
+            if(inside.indexOf('<') >= 0) {
+                //Has children -> parse them recursively
+                while (inside.indexOf('<') >= 0) { //While there are opening tags, add as children
+                    //Pass the inside as a parameter for the 'child' node
+                    //After parsing it will change that to the remainder after it's closing tag
+                    // that's why str was set to the remainder of the input string earlier
+                    node->addChild(Parser::stringToNodeRecursive(inside));
+                }
+            } else {
+                //No children -> Add the content
+                node->setContent(inside.trim());
             }
         } else {
             // Same as earlier, in order for the elements after the current one to be parsed
@@ -132,14 +143,14 @@ XML_Node *Parser::stringToNodeRecursive(String &str) {
         }
 
     } else {
-        //TODO: Throw error, Invalid File
+        throw Exception(INVALID_XML);
     }
 
     return node;
 }
 
 String Parser::generateUniqueId() {
-    return String::generateRandom(5) + "*";
+    return String::generateRandom(3) + "*";
     // The * indicates it is generated
 }
 

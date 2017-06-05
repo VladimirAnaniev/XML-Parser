@@ -23,15 +23,7 @@ bool Console::readLine() {
     return Dispatcher::dispatch(c);
 }
 
-void Console::invalidCommand() {
-    Console::writeLine("Invalid command!");
-}
-
-void Console::write(String str) {
-    std::cout << str;
-}
-
-void Console::writeLine(String str) {
+void Console::log(String str) {
     std::cout << str << std::endl;
 }
 

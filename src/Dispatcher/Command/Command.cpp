@@ -17,12 +17,6 @@ Command::Command(List<String> input) {
     this->action = input.deleteAt(0);
 
     this->arguments = input;
-
-    for (int i = 0; i < arguments.getSize(); i++) {
-        if (arguments[i].beginsWith("-")) {
-            this->optionals.push(this->arguments.deleteAt(i));
-        }
-    }
 }
 
 bool Command::operator==(String action) const {

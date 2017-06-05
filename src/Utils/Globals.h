@@ -35,6 +35,7 @@ namespace Globals {
     static const String NO_SUCH_CHILD = "No such child exists.";
     static const String NO_CHILDREN = "This element has no children.";
     static const String DELETED = "Deleted: ";
+    static const String INVALID_XML = "Invalid XML file.";
 }
 
 #endif //XML_PARSER_GLOBALS

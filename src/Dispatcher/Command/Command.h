@@ -6,7 +6,6 @@
 class Command {
     String action;
     List<String> arguments;
-    List<String> optionals;
 public:
     /** Constructors **/
     Command(List<String> input);

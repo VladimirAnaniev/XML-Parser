@@ -260,7 +260,7 @@ String String::generateRandom(int len) {
     return str;
 }
 
-int String::indexOfBackwards(char c) const {
+int String::lastIndexOf(char c) const {
     for (int i = this->length - 1; i >= 0; i--) {
         if (this->str[i] == c) return i;
     }
@@ -274,4 +274,28 @@ int String::calculateCapacity(int length) {
         capacity *= 2;
     }
     return capacity;
+}
+
+String String::trim() const {
+    int startIndex = -1, endIndex = -1;
+
+    for(int i=0;i<this->getLength();i++) {
+        if(this->str[i] != ' ' && this->str[i] != '\n') {
+            startIndex = i;
+            break;
+        }
+    }
+
+    for(int i=this->getLength()-1;i>=0;i--) {
+        if(this->str[i] != ' ' && this->str[i] != '\n') {
+            endIndex = i;
+            break;
+        }
+    }
+
+    if(endIndex > startIndex) {
+        return this->substring(startIndex, endIndex + 1);
+    }
+
+    return String();
 }

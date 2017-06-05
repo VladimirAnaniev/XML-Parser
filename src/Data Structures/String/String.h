@@ -82,7 +82,11 @@ public:
     //Generates a random string with given length
     static String generateRandom(int len);
 
-    int indexOfBackwards(char c) const;
+    //Returns the index of the last occurrence of c
+    int lastIndexOf(char c) const;
+
+    //Remove spaces and new lines at start and end
+    String trim() const;
 
     /** Operators **/
     //Concats two strings together and produces new String

@@ -35,7 +35,7 @@ bool Dispatcher::dispatch(Command command) {
     } else if (command == QUIT) {
         return false;
     } else {
-        Console::writeLine(INVALID_COMMAND);
+        Console::log(INVALID_COMMAND);
     }
 
     return true;
@@ -45,7 +45,7 @@ XML_Node *findNodeById(String id) {
     try {
         return FileManager::getFile().getParent()->findById(id);
     } catch (Exception ex) {
-        Console::writeLine(ex.what());
+        Console::log(ex.what());
     }
     return nullptr;
 }
@@ -58,12 +58,12 @@ void Dispatcher::select(String id, String key) {
 
     for (int i = 0; i < nodeArgs.getSize(); i++) {
         if (nodeArgs[i].getKey() == key) {
-            Console::writeLine(nodeArgs[i]);
+            Console::log(nodeArgs[i]);
             return;
         }
     }
 
-    Console::writeLine(NO_SUCH_ARGUMENT);
+    Console::log(NO_SUCH_ARGUMENT);
 }
 
 void Dispatcher::set(String id, String key, String value) {
@@ -75,13 +75,13 @@ void Dispatcher::set(String id, String key, String value) {
     for (int i = 0; i < nodeArgs.getSize(); i++) {
         if (nodeArgs[i].getKey() == key) {
             nodeArgs[i].setValue(value);
-            Console::writeLine(nodeArgs[i]);
+            Console::log(nodeArgs[i]);
             return;
         }
     }
 
     nodeArgs.push(Argument(key, value));
-    Console::writeLine(nodeArgs[nodeArgs.getSize() - 1]);
+    Console::log(nodeArgs[nodeArgs.getSize() - 1]);
 }
 
 void Dispatcher::child(String id, int index) {
@@ -89,9 +89,9 @@ void Dispatcher::child(String id, int index) {
     if (!node) return;
 
     if (node->getChildren().getSize() <= index) {
-        Console::writeLine(NO_SUCH_CHILD);
+        Console::log(NO_SUCH_CHILD);
     } else {
-        Console::writeLine(((XML_Node *) node->getChildren()[index])->toString());
+        Console::log(((XML_Node *) node->getChildren()[index])->toString());
     }
 }
 
@@ -100,11 +100,11 @@ void Dispatcher::children(String id) {
     if (!node) return;
 
     for (int i = 0; i < node->getChildren().getSize(); i++) {
-        Console::writeLine(((XML_Node *) node->getChildren()[i])->toString());
+        Console::log(((XML_Node *) node->getChildren()[i])->toString());
     }
 
     if (node->getChildren().getSize() < 1) {
-        Console::writeLine(NO_CHILDREN);
+        Console::log(NO_CHILDREN);
     }
 }
 
@@ -112,7 +112,7 @@ void Dispatcher::text(String id) {
     XML_Node *node = findNodeById(id);
     if (!node) return;
 
-    Console::writeLine(node->getContent());
+    Console::log(node->getContent());
 }
 
 void Dispatcher::del(String id, String key) {
@@ -123,10 +123,10 @@ void Dispatcher::del(String id, String key) {
 
     for (int i = 0; i < args.getSize(); i++) {
         if (args[i].getKey() == key) {
-            Console::writeLine(DELETED + args.deleteAt(i));
+            Console::log(DELETED + args.deleteAt(i));
             return;
         }
     }
 
-    Console::writeLine(NO_SUCH_ARGUMENT);
+    Console::log(NO_SUCH_ARGUMENT);
 }

@@ -16,28 +16,28 @@ File &FileManager::getFile() {
 
 bool FileManager::close() {
     if (file) {
-        Console::writeLine(CLOSED_FILE + file->getPath());
+        Console::log(CLOSED_FILE + file->getPath());
         delete file;
         file = nullptr;
         return true;
     }
 
-    Console::writeLine(CANNOT_CLOSE);
+    Console::log(CANNOT_CLOSE);
     return false;
 }
 
 bool FileManager::open(String path) {
     if (file) {
-        Console::writeLine(ALREADY_OPEN);
+        Console::log(ALREADY_OPEN);
         return false;
     }
 
     try {
         file = new File(path);
-        Console::writeLine(OPENED_FILE + file->getPath());
+        Console::log(OPENED_FILE + file->getPath());
         return true;
     } catch (Exception ex) {
-        Console::writeLine(ex.what());
+        Console::log(ex.what());
         return false;
     }
 }
@@ -47,11 +47,11 @@ bool FileManager::save() {
         std::ofstream f(file->getPath());
         f << Parser::nodeTreeToString(file->getParent());
         f.close();
-        Console::writeLine(SAVED_FILE + file->getPath());
+        Console::log(SAVED_FILE + file->getPath());
         return true;
     }
 
-    Console::writeLine(CANNOT_SAVE);
+    Console::log(CANNOT_SAVE);
     return false;
 }
 
@@ -62,16 +62,16 @@ bool FileManager::saveAs(String path) {
         return true;
     }
 
-    Console::writeLine(CANNOT_SAVE);
+    Console::log(CANNOT_SAVE);
     return false;
 }
 
 bool FileManager::print() {
     if (file) {
-        Console::writeLine(Parser::nodeTreeToString(file->getParent()));
+        Console::log(Parser::nodeTreeToString(file->getParent()));
         return true;
     }
 
-    Console::writeLine(CANNOT_PRINT);
+    Console::log(CANNOT_PRINT);
     return false;
 }

@@ -10,19 +10,13 @@ class Console {
     //reads from console, returns executeCommand(parseCommand(input));
     static bool readLine();
 
-    //Informs the user they entered an invalid command
-    static void invalidCommand();
-
 public:
     /** Methods **/
     //Listen for commands
     static void listen();
 
-    //Write text on the console
-    static void write(String str);
-
     //Write text on the console, then start a new line
-    static void writeLine(String str);
+    static void log(String str);
 };
 
 
