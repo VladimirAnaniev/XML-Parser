@@ -6,10 +6,17 @@
 using namespace Globals;
 
 void Parser::validate(XML_Node *nodeTree, List<String> &ids) {
-    if (ids.indexOf(nodeTree->getId()) >= 0 || nodeTree->getId() == String("")) {
+    if(nodeTree->getId() == String("")) {
+        nodeTree->setId(Parser::generateUniqueId());
+    }
+
+    if (ids.indexOf(nodeTree->getId()) >= 0) {
+        int i = 1;
+        String oldId = nodeTree->getId();
         do {
-            nodeTree->setId(Parser::generateUniqueId());
-        } while (ids.indexOf(nodeTree->getId()) >= 0);
+            nodeTree->setId(oldId + "_" + intToString(i));
+            i++;
+        } while(ids.indexOf(nodeTree->getId()) >= 0);
     }
 
     ids.push(nodeTree->getId());
