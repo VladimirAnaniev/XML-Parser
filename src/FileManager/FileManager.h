@@ -8,6 +8,7 @@ class FileManager {
 
     //Private Constructor
     FileManager() {}
+
 public:
     /** Methods **/
     //Open a file and read its data

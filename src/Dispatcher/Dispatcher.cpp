@@ -52,7 +52,7 @@ XML_Node *findNodeById(String id) {
 
 void Dispatcher::select(String id, String key) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
     List<Argument> &nodeArgs = node->getArguments();
 
@@ -68,7 +68,7 @@ void Dispatcher::select(String id, String key) {
 
 void Dispatcher::set(String id, String key, String value) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
     List<Argument> &nodeArgs = node->getArguments();
 
@@ -81,48 +81,48 @@ void Dispatcher::set(String id, String key, String value) {
     }
 
     nodeArgs.push(Argument(key, value));
-    Console::writeLine(nodeArgs[nodeArgs.getSize() -1]);
+    Console::writeLine(nodeArgs[nodeArgs.getSize() - 1]);
 }
 
 void Dispatcher::child(String id, int index) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
-    if(node->getChildren().getSize() <= index) {
+    if (node->getChildren().getSize() <= index) {
         Console::writeLine(NO_SUCH_CHILD);
     } else {
-        Console::writeLine(((XML_Node *)node->getChildren()[index])->toString());
+        Console::writeLine(((XML_Node *) node->getChildren()[index])->toString());
     }
 }
 
 void Dispatcher::children(String id) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
-    for(int i=0;i<node->getChildren().getSize();i++) {
-        Console::writeLine(((XML_Node *)node->getChildren()[i])->toString());
+    for (int i = 0; i < node->getChildren().getSize(); i++) {
+        Console::writeLine(((XML_Node *) node->getChildren()[i])->toString());
     }
 
-    if(node->getChildren().getSize() < 1) {
+    if (node->getChildren().getSize() < 1) {
         Console::writeLine(NO_CHILDREN);
     }
 }
 
 void Dispatcher::text(String id) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
     Console::writeLine(node->getContent());
 }
 
 void Dispatcher::del(String id, String key) {
     XML_Node *node = findNodeById(id);
-    if(!node) return;
+    if (!node) return;
 
     List<Argument> &args = node->getArguments();
 
-    for(int i=0;i<args.getSize();i++) {
-        if(args[i].getKey() == key) {
+    for (int i = 0; i < args.getSize(); i++) {
+        if (args[i].getKey() == key) {
             Console::writeLine(DELETED + args.deleteAt(i));
             return;
         }

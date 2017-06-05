@@ -4,7 +4,7 @@
 #include "../FileManager/FileManager.h"
 
 class Console {
-    
+    //Private constructor
     Console() {}
 
     //reads from console, returns executeCommand(parseCommand(input));

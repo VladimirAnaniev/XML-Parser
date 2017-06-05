@@ -5,7 +5,7 @@
 
 void Console::listen() {
     bool loop = true;
-    while(loop) {
+    while (loop) {
         loop = Console::readLine();
     }
 }

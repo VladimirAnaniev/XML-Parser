@@ -29,8 +29,6 @@ public:
 
     //Generates unique id
     static String generateUniqueId();
-
-
 };
 
 

@@ -13,7 +13,7 @@ void Parser::validate(XML_Node *nodeTree, List<String> &ids) {
     List<TreeNode *> children = nodeTree->getChildren();
 
     for (int i = 0; i < children.getSize(); i++) {
-        Parser::validate((XML_Node *)children[i], ids);
+        Parser::validate((XML_Node *) children[i], ids);
     }
 }
 
@@ -44,10 +44,10 @@ String Parser::nodeToStringRecursive(XML_Node *node, int depth) {
         List<TreeNode *> children = node->getChildren();
         for (int i = 0; i < children.getSize(); i++) {
             // Call recursively for each node's children
-            result += Parser::nodeToStringRecursive((XML_Node *)children[i], depth + 1);
+            result += Parser::nodeToStringRecursive((XML_Node *) children[i], depth + 1);
         }
 
-        if(node->getContent().getLength()) {
+        if (node->getContent().getLength()) {
             //Content should be printed with bigger offset, like children are
             result += offset + String(' ', 4) + node->getContent() + "\n";
         }
@@ -120,7 +120,7 @@ XML_Node *Parser::stringToNodeRecursive(String &str) {
             //Set str to the string that remains so that the recursion can continue
             str = rest.after(rest.indexOf(String(closingTag)) + closingTag.getLength());
 
-            while(inside.getLength()) { //If inside is empty, there are no more children to add
+            while (inside.getLength()) { //If inside is empty, there are no more children to add
                 //Pass the inside as a parameter for the 'child' node
                 //After parsing it will change that to the remainder after it's closing tag
                 // that's why str was set to the remainder of the input string earlier

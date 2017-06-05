@@ -19,6 +19,7 @@ public:
     List<String> getArguments() const;
 
     /** Operators **/
+    //Compare to an action String
     bool operator==(String action) const;
 
 };

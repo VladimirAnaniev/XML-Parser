@@ -27,7 +27,7 @@ void File::parse() {
 
     file >> this->data;
 
-    if(this->root) delete this->root;
+    if (this->root) delete this->root;
     this->root = Parser::stringToNodeTree(this->data);
 
     file.close();
@@ -39,7 +39,7 @@ XML_Node *File::getParent() const {
 
 bool File::isValid() const {
     std::ifstream file(this->path);
-    if(file) {
+    if (file) {
         return true;
     } else {
         throw Exception(INVALID_PATH);
@@ -51,7 +51,7 @@ File::File(String path) : root(nullptr) {
     this->parse();
 }
 
-File::File(const File &file): path(file.path), root(nullptr) {
+File::File(const File &file) : path(file.path), root(nullptr) {
     this->parse();
 }
 

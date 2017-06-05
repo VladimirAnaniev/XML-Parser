@@ -3,5 +3,5 @@
 Argument::Argument(String key, String value) : Pair(key, value) {}
 
 String Argument::toString() {
-    return this->getKey()+"=\""+this->getValue()+"\" ";
+    return this->getKey() + "=\"" + this->getValue() + "\" ";
 }

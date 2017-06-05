@@ -8,14 +8,14 @@ using namespace Globals;
 
 File *FileManager::file = nullptr;
 
-File& FileManager::getFile() {
-    if(file) return *file;
+File &FileManager::getFile() {
+    if (file) return *file;
 
     throw Exception(NO_FILE);
 }
 
 bool FileManager::close() {
-    if(file) {
+    if (file) {
         Console::writeLine(CLOSED_FILE + file->getPath());
         delete file;
         file = nullptr;
@@ -27,7 +27,7 @@ bool FileManager::close() {
 }
 
 bool FileManager::open(String path) {
-    if(file) {
+    if (file) {
         Console::writeLine(ALREADY_OPEN);
         return false;
     }
@@ -36,16 +36,16 @@ bool FileManager::open(String path) {
         file = new File(path);
         Console::writeLine(OPENED_FILE + file->getPath());
         return true;
-    } catch(Exception ex) {
+    } catch (Exception ex) {
         Console::writeLine(ex.what());
         return false;
     }
 }
 
 bool FileManager::save() {
-    if(file) {
+    if (file) {
         std::ofstream f(file->getPath());
-        f<<Parser::nodeTreeToString(file->getParent());
+        f << Parser::nodeTreeToString(file->getParent());
         f.close();
         Console::writeLine(SAVED_FILE + file->getPath());
         return true;
@@ -56,7 +56,7 @@ bool FileManager::save() {
 }
 
 bool FileManager::saveAs(String path) {
-    if(file) {
+    if (file) {
         file->setPath(path);
         FileManager::save();
         return true;
@@ -67,7 +67,7 @@ bool FileManager::saveAs(String path) {
 }
 
 bool FileManager::print() {
-    if(file) {
+    if (file) {
         Console::writeLine(Parser::nodeTreeToString(file->getParent()));
         return true;
     }

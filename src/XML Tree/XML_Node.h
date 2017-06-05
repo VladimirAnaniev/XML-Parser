@@ -8,13 +8,9 @@
 
 struct Data {
     String tag;
-    String id; //TODO: Id polymorphic class
+    String id;
     List<Argument> arguments;
     String content;
-
-    bool operator==(const Data& data) {
-        return false; //TODO
-    }
 };
 
 class XML_Node : public TreeNode, public Stringifiable {
@@ -23,7 +19,6 @@ class XML_Node : public TreeNode, public Stringifiable {
 public:
 
     /** Methods **/
-
     //Set this node's tag
     void setTag(String tag);
 
@@ -51,8 +46,10 @@ public:
     // returns this node's arguments
     List<Argument> &getArguments();
 
+    //Find the Node with [id] if such exists
     XML_Node *findById(String id);
 
+    //Parse to String
     String toString() override;
 };
 

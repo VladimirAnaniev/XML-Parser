@@ -7,8 +7,10 @@
 class Exception : public std::exception {
     String message;
 public:
+    ////Constructor
     Exception(String message) : message(message) {};
 
+    //Extract the message of the exception
     const char *what() const noexcept override {
         return message;
     }

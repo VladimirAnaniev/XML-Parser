@@ -9,7 +9,7 @@ List<TreeNode *> &TreeNode::getChildren() {
 }
 
 void TreeNode::setParent(TreeNode *parent) {
-    if(this->parent) {
+    if (this->parent) {
         this->parent->removeChild(this);
     }
 
@@ -31,7 +31,7 @@ TreeNode::~TreeNode() {
     }
 
     // remove this from its parents' children
-    if(this->parent) {
+    if (this->parent) {
         this->parent->removeChild(this);
     }
 }

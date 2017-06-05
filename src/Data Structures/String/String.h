@@ -100,6 +100,7 @@ public:
     //Parse to const char*
     operator const char *() const { return this->str; }
 
+    //Convert a String to int
     explicit operator int() { return atoi(this->str); }
 
     //Get char at index

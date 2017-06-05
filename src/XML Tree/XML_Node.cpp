@@ -38,14 +38,14 @@ String XML_Node::getContent() const {
     return this->data.content;
 }
 
-XML_Node* XML_Node::findById(String id) {
-    if(this->getId() == id) return this;
+XML_Node *XML_Node::findById(String id) {
+    if (this->getId() == id) return this;
 
     List<TreeNode *> children = this->getChildren();
 
-    for(int i=0;i<children.getSize(); i++) {
+    for (int i = 0; i < children.getSize(); i++) {
         XML_Node *result = ((XML_Node *) children[i])->findById(id);
-        if(result != nullptr) return result;
+        if (result != nullptr) return result;
     }
 
     return nullptr;
