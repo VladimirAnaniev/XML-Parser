@@ -4,6 +4,7 @@
 #include "../Utils/Exception.h"
 #include "../FileManager/FileManager.h"
 #include "../Console/Console.h"
+#include "../XPath/XPath.h"
 
 using namespace Globals;
 
@@ -32,7 +33,11 @@ bool Dispatcher::dispatch(Command command) {
         Dispatcher::text(args[0]);
     } else if (command == DELETE) {
         Dispatcher::del(args[0], args[1]);
-    } else if (command == QUIT) {
+    } else if (command == REMOVE) {
+        Dispatcher::remove(args[0]);
+    } /*else if (command == XPATH) {
+        Dispatcher::xpath(args[0], args[1]);
+    }*/ else if (command == QUIT) {
         return false;
     } else {
         Console::log(INVALID_COMMAND);
@@ -129,4 +134,28 @@ void Dispatcher::del(String id, String key) {
     }
 
     Console::log(NO_SUCH_ARGUMENT);
+}
+
+void Dispatcher::remove(String id) {
+    XML_Node *node = findNodeById(id);
+    if (!node) return;
+
+    delete node;
+
+    Console::log(REMOVED + id);
+}
+
+void Dispatcher::xpath(String id, String query) {
+    XML_Node *node = findNodeById(id);
+    if (!node) return;
+
+    List<String> results = XPath::executeQuery(query, node);
+
+    for(int i=0;i<results.getSize();i++) {
+        Console::log(results[i]);
+    }
+
+    if (results.getSize() == 0) {
+        Console::log(NO_RRESULTS_XPATH);
+    }
 }

@@ -20,5 +20,5 @@ Command::Command(List<String> input) {
 }
 
 bool Command::operator==(String action) const {
-    return strcmp(this->action, action) == 0;
+    return strcmp(this->action.toLower(), action.toLower()) == 0;
 }

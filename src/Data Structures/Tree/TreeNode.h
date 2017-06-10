@@ -1,7 +1,7 @@
 #ifndef XML_PARSER_TREENODE_H
 #define XML_PARSER_TREENODE_H
 
-#include "../Array/List.h"
+#include "../List/List.h"
 
 class TreeNode {
 private:

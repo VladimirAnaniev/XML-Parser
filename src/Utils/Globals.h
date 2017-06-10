@@ -18,6 +18,7 @@ namespace Globals {
     static const String DELETE = "delete";
     static const String REMOVE = "remove";
     static const String NEW_CHILD = "newchild";
+    static const String XPATH = "xpath";
     static const String QUIT = "quit";
 
     //Feedback
@@ -35,7 +36,9 @@ namespace Globals {
     static const String NO_SUCH_CHILD = "No such child exists.";
     static const String NO_CHILDREN = "This element has no children.";
     static const String DELETED = "Deleted: ";
+    static const String REMOVED = "Removed element with id: ";
     static const String INVALID_XML = "Invalid XML file.";
+    static const String NO_RRESULTS_XPATH = "Your XPath query returned no results.";
 }
 
 #endif //XML_PARSER_GLOBALS

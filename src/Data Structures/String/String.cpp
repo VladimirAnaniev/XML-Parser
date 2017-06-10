@@ -279,23 +279,31 @@ int String::calculateCapacity(int length) {
 String String::trim() const {
     int startIndex = -1, endIndex = -1;
 
-    for(int i=0;i<this->getLength();i++) {
-        if(this->str[i] != ' ' && this->str[i] != '\n') {
+    for (int i = 0; i < this->getLength(); i++) {
+        if (this->str[i] != ' ' && this->str[i] != '\n') {
             startIndex = i;
             break;
         }
     }
 
-    for(int i=this->getLength()-1;i>=0;i--) {
-        if(this->str[i] != ' ' && this->str[i] != '\n') {
+    for (int i = this->getLength() - 1; i >= 0; i--) {
+        if (this->str[i] != ' ' && this->str[i] != '\n') {
             endIndex = i;
             break;
         }
     }
 
-    if(endIndex > startIndex) {
+    if (endIndex > startIndex) {
         return this->substring(startIndex, endIndex + 1);
     }
 
     return String();
+}
+
+String String::toLower() const {
+    String str;
+    for (int i = 0; i < this->length; i++) {
+         str+=tolower(this->str[i]);
+    }
+    return str;
 }

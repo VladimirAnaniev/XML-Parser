@@ -2,7 +2,7 @@
 #define XML_PARSER_STRING_H
 
 #include <fstream>
-#include "../Array/List.h"
+#include "../List/List.h"
 
 class String {
     char *str;
@@ -87,6 +87,8 @@ public:
 
     //Remove spaces and new lines at start and end
     String trim() const;
+
+    String toLower() const;
 
     /** Operators **/
     //Concats two strings together and produces new String
