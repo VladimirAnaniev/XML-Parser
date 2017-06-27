@@ -35,6 +35,8 @@ bool Dispatcher::dispatch(Command command) {
         Dispatcher::del(args[0], args[1]);
     } else if (command == REMOVE) {
         Dispatcher::remove(args[0]);
+    } else if (command == SET_ID) {
+        Dispatcher::setId(args[0], args[1]);
     } /*else if (command == XPATH) {
         Dispatcher::xpath(args[0], args[1]);
     }*/ else if (command == QUIT) {
@@ -57,7 +59,10 @@ XML_Node *findNodeById(String id) {
 
 void Dispatcher::select(String id, String key) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
 
     List<Argument> &nodeArgs = node->getArguments();
 
@@ -73,7 +78,14 @@ void Dispatcher::select(String id, String key) {
 
 void Dispatcher::set(String id, String key, String value) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
+    if(key == String("id")) {
+        Console::log(USE_SETID);
+        return;
+    }
 
     List<Argument> &nodeArgs = node->getArguments();
 
@@ -91,10 +103,9 @@ void Dispatcher::set(String id, String key, String value) {
 
 void Dispatcher::child(String id, int index) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
 
-    if (node->getChildren().getSize() <= index) {
-        Console::log(NO_SUCH_CHILD);
+    if (!node || node->getChildren().getSize() <= index) {
+        Console::log(NO_SUCH_ELEMENT);
     } else {
         Console::log(((XML_Node *) node->getChildren()[index])->toString());
     }
@@ -102,7 +113,10 @@ void Dispatcher::child(String id, int index) {
 
 void Dispatcher::children(String id) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
 
     for (int i = 0; i < node->getChildren().getSize(); i++) {
         Console::log(((XML_Node *) node->getChildren()[i])->toString());
@@ -115,14 +129,20 @@ void Dispatcher::children(String id) {
 
 void Dispatcher::text(String id) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
 
     Console::log(node->getContent());
 }
 
 void Dispatcher::del(String id, String key) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
 
     List<Argument> &args = node->getArguments();
 
@@ -138,11 +158,30 @@ void Dispatcher::del(String id, String key) {
 
 void Dispatcher::remove(String id) {
     XML_Node *node = findNodeById(id);
-    if (!node) return;
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
 
     delete node;
 
     Console::log(REMOVED + id);
+}
+
+void Dispatcher::setId(String oldId, String newId) {
+    if(newId.getLength() <= 0) {
+        Console::log(SPECIFY_ID);
+        return;
+    }
+
+    XML_Node *node = findNodeById(oldId);
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
+
+    node->setId(newId);
+    Console::log("id=\""+newId+"\"");
 }
 
 //void Dispatcher::xpath(String id, String query) { TODO

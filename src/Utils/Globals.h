@@ -20,6 +20,7 @@ namespace Globals {
     static const String NEW_CHILD = "newchild";
     static const String XPATH = "xpath";
     static const String QUIT = "quit";
+    static const String SET_ID = "setid";
 
     //Feedback
     static const String INVALID_COMMAND = "Invalid command.";
@@ -33,11 +34,13 @@ namespace Globals {
     static const String CANNOT_SAVE = "You cannot close a file when you haven't opened one.";
     static const String CANNOT_PRINT = "You cannot print when you haven't opened a file.";
     static const String NO_SUCH_ARGUMENT = "No such argument exists.";
-    static const String NO_SUCH_CHILD = "No such child exists.";
+    static const String NO_SUCH_ELEMENT = "No such element exists.";
     static const String NO_CHILDREN = "This element has no children.";
     static const String DELETED = "Deleted: ";
     static const String REMOVED = "Removed element with id: ";
     static const String INVALID_XML = "Invalid XML file.";
+    static const String SPECIFY_ID = "Please specify the new id.";
+    static const String USE_SETID = "Use the 'setid' command to change an element's id.";
     static const String NO_RRESULTS_XPATH = "Your XPath query returned no results.";
     static const String INVALID_INDEXES_EXCEPTION = "Invalid parameter indexes for function ";
 }

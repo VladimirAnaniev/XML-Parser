@@ -29,6 +29,9 @@ class Dispatcher {
     //Removes a element from the XML tree
     static void remove(String id);
 
+    // Changes an element's id
+    static void setId(String oldId, String newId);
+
     //Executes a XPath query on a element ith [id]
     //static void xpath(String id, String query); TODO
 

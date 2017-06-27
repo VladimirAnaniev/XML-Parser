@@ -48,6 +48,9 @@ You can only close a file if you have opened one.
 - Sets the **[key]** argument of the element with **[id]** to **[value]**.
 If **[key]** exists, value gets changed, else a new pair is created.
 
+``setid [old] [new]``
+- Changes the id of the element with id=**[old]** to **[new]**
+
 ``delete [id] [key]``
 - Deletes the **[key]** argument of the element with **[id]**.
 
