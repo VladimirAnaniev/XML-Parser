@@ -5,6 +5,7 @@ Command line interface for parsing and editing XML files
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Example](#example)
 
 ## Installation
 You will need [CMake](https://cmake.org/)
@@ -68,3 +69,51 @@ If **[key]** exists, value gets changed, else a new pair is created.
 
 ``select [id] [key]``
 - Outputs the value of the **[key]** argument of the element with **[id]**
+
+## Example
+Lets have a file named **`example.txt`** with the following content:
+``````
+<parent name="Ivan">
+    <son id="1" name="Georgi">
+        <age>15</age>
+    </son>
+    <daughter name="Maria">
+        <age>14</age>
+        <talents number="2">
+            <talent id="1">Singing</talent>
+            <talent id="2">Dancing</talent>
+        </talents>
+    </daughter>
+    <occupation type="unemployed"/>
+</parent>
+``````
+After opening this file and executing the `print` command the result will be:
+``````
+<parent id="XtQ*" name="Ivan">
+    <son id="1" name="Georgi">
+        <age id="ceT*">
+            15
+        </age>
+    </son>
+    <daughter id="NJn*" name="Maria">
+        <age id="ytg*">
+            14
+        </age>
+        <talents id="niB*" number="2">
+            <talent id="1_1">
+                Singing
+            </talent>
+            <talent id="2">
+                Dancing
+            </talent>
+        </talents>
+    </daughter>
+    <occupation id="mqG*" type="unemployed"/>
+</parent>
+``````
+What you can see is that all elements that had no
+ids previously have had one generated for them at
+random *(3 random characters, followed by \*)*.
+
+Also, because all ids should be unique, *Maria's singing talent's*
+**id** has been changed to **"1_1"**, because *Georgi* already has **id="1"**.
