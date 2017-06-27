@@ -39,6 +39,7 @@ namespace Globals {
     static const String REMOVED = "Removed element with id: ";
     static const String INVALID_XML = "Invalid XML file.";
     static const String NO_RRESULTS_XPATH = "Your XPath query returned no results.";
+    static const String INVALID_INDEXES_EXCEPTION = "Invalid parameter indexes for function ";
 }
 
 #endif //XML_PARSER_GLOBALS

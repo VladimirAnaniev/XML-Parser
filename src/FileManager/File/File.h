@@ -12,9 +12,6 @@ class File {
     //Change the data in the file
     void setData(String data);
 
-    //Checks if the current path is valid
-    bool isValid() const;
-
 public:
     ////Constructor
     File(String path);
@@ -33,7 +30,7 @@ public:
     XML_Node *getParent() const;
 
     //Change the path of this file.
-    bool setPath(String path);
+    void setPath(String path);
 
     //parse the data
     void parse();

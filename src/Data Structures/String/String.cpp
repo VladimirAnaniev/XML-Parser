@@ -1,6 +1,9 @@
 #include <cstring>
 #include <iostream>
 #include "String.h"
+#include "../../Utils/Exception.h"
+#include "../../Utils/Globals.h"
+using namespace Globals;
 
 String::String(const char *str) : str(nullptr) {
     this->set(str);
@@ -82,7 +85,7 @@ std::istream &operator>>(std::istream &in, String &str) {
 
 const char String::operator[](int index) const {
     if (index < 0 || index >= this->length) {
-        throw std::invalid_argument("Trying to call string[index] with an invalid index.");
+        throw Exception(INVALID_INDEXES_EXCEPTION + "operator[]");
     }
 
     return this->str[index];
@@ -110,6 +113,8 @@ List<String> String::split(char c) const {
 }
 
 String String::substring(int start, int end) const {
+    if (end < start) throw Exception(INVALID_INDEXES_EXCEPTION + "substring(int start, int end)");
+
     char *newStr = new char[end - start + 1];
     strncpy(newStr, this->str + start, (size_t) end - start);
     newStr[end - start] = '\0';
@@ -304,7 +309,7 @@ String String::trim() const {
 String String::toLower() const {
     String str;
     for (int i = 0; i < this->length; i++) {
-         str+=tolower(this->str[i]);
+        str += tolower(this->str[i]);
     }
     return str;
 }

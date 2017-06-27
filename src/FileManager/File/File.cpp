@@ -5,9 +5,8 @@
 
 using namespace Globals;
 
-bool File::setPath(String path) {
+void File::setPath(String path) {
     this->path.set(path);
-    return this->isValid();
 }
 
 void File::setData(String data) {
@@ -35,15 +34,6 @@ void File::parse() {
 
 XML_Node *File::getParent() const {
     return this->root;
-}
-
-bool File::isValid() const {
-    std::ifstream file(this->path);
-    if (file) {
-        return true;
-    } else {
-        throw Exception(INVALID_PATH);
-    }
 }
 
 File::File(String path) : root(nullptr) {

@@ -37,7 +37,7 @@ bool FileManager::open(String path) {
         Console::log(OPENED_FILE + file->getPath());
         return true;
     } catch (Exception ex) {
-        Console::log(ex.what());
+        Console::log(INVALID_XML);
         return false;
     }
 }
