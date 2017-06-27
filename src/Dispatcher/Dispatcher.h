@@ -32,6 +32,9 @@ class Dispatcher {
     // Changes an element's id
     static void setId(String oldId, String newId);
 
+    // Creates a new element with given tag and id
+    static void newChild(String parentId, String tag, String id);
+
     //Executes a XPath query on a element ith [id]
     //static void xpath(String id, String query); TODO
 

@@ -37,6 +37,8 @@ bool Dispatcher::dispatch(Command command) {
         Dispatcher::remove(args[0]);
     } else if (command == SET_ID) {
         Dispatcher::setId(args[0], args[1]);
+    } else if (command == NEW_CHILD) {
+        Dispatcher::newChild(args[0], args[1], args[2]);
     } /*else if (command == XPATH) {
         Dispatcher::xpath(args[0], args[1]);
     }*/ else if (command == QUIT) {
@@ -182,6 +184,22 @@ void Dispatcher::setId(String oldId, String newId) {
 
     node->setId(newId);
     Console::log("id=\""+newId+"\"");
+}
+
+void Dispatcher::newChild(String parentId, String tag, String id) {
+    //TODO: Check if id is unique
+
+    XML_Node *node = findNodeById(parentId);
+    if (!node) {
+        Console::log(NO_SUCH_ELEMENT);
+        return;
+    }
+
+    XML_Node *newNode = new XML_Node();
+    newNode->setId(id);
+    newNode->setTag(tag);
+    node->addChild(newNode);
+    Console::log(newNode->toString());
 }
 
 //void Dispatcher::xpath(String id, String query) { TODO

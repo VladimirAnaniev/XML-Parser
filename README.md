@@ -44,6 +44,9 @@ You can only close a file if you have opened one.
 - Saves the xml file in a file given as an argument. If no such file exists, it will be created.
 
 ### Editing
+``newchild [parentId] [tag] [id]``
+- Creates a new element with **[tag]** and **[id]** and puts it as a child of the element with **[parentId]**
+
 ``set [id] [key] [value]``
 - Sets the **[key]** argument of the element with **[id]** to **[value]**.
 If **[key]** exists, value gets changed, else a new pair is created.

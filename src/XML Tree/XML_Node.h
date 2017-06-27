@@ -17,6 +17,8 @@ class XML_Node : public TreeNode, public Stringifiable {
     Data data;
 
 public:
+    ////Constructor
+
 
     /** Methods **/
     //Set this node's tag
