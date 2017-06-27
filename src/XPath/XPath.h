@@ -6,7 +6,7 @@
 
 class XPath {
 public:
-    static List<String> executeQuery(String query, XML_Node *node);
+    //static List<String> executeQuery(String query, XML_Node *node); TODO
 };
 
 

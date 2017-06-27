@@ -7,15 +7,15 @@ class Console {
     //Private constructor
     Console() {}
 
-    //reads from console, returns executeCommand(parseCommand(input));
+    // Reads a command from the console and executes it
     static bool readLine();
 
 public:
     /** Methods **/
-    //Listen for commands
+    // Listen for commands
     static void listen();
 
-    //Write text on the console, then start a new line
+    // Write text on the console, then start a new line
     static void log(String str);
 };
 

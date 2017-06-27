@@ -254,6 +254,7 @@ String String::generateRandom(int len) {
             arr[i] = (char) ('0' + (random - 2 * alphabet));
         }
     }
+    arr[len] = '\0';
 
     String str(arr);
     delete[] arr;

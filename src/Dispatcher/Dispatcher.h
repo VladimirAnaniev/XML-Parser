@@ -7,7 +7,7 @@ class Dispatcher {
     //Private constructor
     Dispatcher() {}
 
-    /** Methods **/ //TODO: Transition them closer to the actual XML Tree
+    /** Methods **/
     //Prints the [key] argument of node with [id]
     static void select(String id, String key);
 
@@ -30,7 +30,7 @@ class Dispatcher {
     static void remove(String id);
 
     //Executes a XPath query on a element ith [id]
-    static void xpath(String id, String query);
+    //static void xpath(String id, String query); TODO
 
 public:
     /** Methods **/

@@ -124,8 +124,8 @@ public:
     }
 
     /** Ideas
-//    //Removes a given element if it is in the array
-//    T remove(T elem);
+    //Removes a given element if it is in the array
+    T remove(T elem);
 
      // void forEach(function f); do some action on every element of the array
      **/

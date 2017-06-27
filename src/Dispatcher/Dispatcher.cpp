@@ -145,17 +145,17 @@ void Dispatcher::remove(String id) {
     Console::log(REMOVED + id);
 }
 
-void Dispatcher::xpath(String id, String query) {
-    XML_Node *node = findNodeById(id);
-    if (!node) return;
-
-    List<String> results = XPath::executeQuery(query, node);
-
-    for(int i=0;i<results.getSize();i++) {
-        Console::log(results[i]);
-    }
-
-    if (results.getSize() == 0) {
-        Console::log(NO_RRESULTS_XPATH);
-    }
-}
+//void Dispatcher::xpath(String id, String query) { TODO
+//    XML_Node *node = findNodeById(id);
+//    if (!node) return;
+//
+//    List<String> results = XPath::executeQuery(query, node);
+//
+//    for(int i=0;i<results.getSize();i++) {
+//        Console::log(results[i]);
+//    }
+//
+//    if (results.getSize() == 0) {
+//        Console::log(NO_RRESULTS_XPATH);
+//    }
+//}
