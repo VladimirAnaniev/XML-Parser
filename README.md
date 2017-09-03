@@ -22,7 +22,7 @@ explained in the [example](#example).
 
 ## Example
 Lets have a file named **`example.txt`** with the following content:
-``````
+`````` XML
 <parent name="Ivan">
     <son id="1" name="Georgi">
         <age>15</age>
@@ -38,7 +38,7 @@ Lets have a file named **`example.txt`** with the following content:
 </parent>
 ``````
 After opening this file and executing the `print` command the result will be:
-``````
+`````` XML
 <parent id="XtQ*" name="Ivan">
     <son id="1" name="Georgi">
         <age id="ceT*">
@@ -75,7 +75,7 @@ You will need [CMake](https://cmake.org/)
 1. [Clone](https://help.github.com/articles/cloning-a-repository/) this repository.
 2. [Run CMake.](https://cmake.org/runningcmake/)
 
-`````
+````` Bash
 $ clone https://github.com/VladimirAnaniev/XML-Parser.git
 $ cd XML_Parser
 $ mkdir build
